@@ -45,7 +45,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
         btnCerrarSesion.setBackground(new java.awt.Color(75, 117, 137));
         btnCerrarSesion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(0, 0, 29));
-        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/power-symbol.png"))); // NOI18N
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/power-symbol.png"))); // NOI18N
         btnCerrarSesion.setText("CERRAR SESIÓN");
         btnCerrarSesion.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153))));
         btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -58,7 +58,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
         btnEstadisticas.setBackground(new java.awt.Color(75, 117, 137));
         btnEstadisticas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnEstadisticas.setForeground(new java.awt.Color(0, 0, 29));
-        btnEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/profits.png"))); // NOI18N
+        btnEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/profits.png"))); // NOI18N
         btnEstadisticas.setText("ESTADISTICAS");
         btnEstadisticas.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153))));
         btnEstadisticas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -71,7 +71,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
         btnPreguntas.setBackground(new java.awt.Color(75, 117, 137));
         btnPreguntas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnPreguntas.setForeground(new java.awt.Color(0, 0, 29));
-        btnPreguntas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/businessman-with-doubts.png"))); // NOI18N
+        btnPreguntas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/businessman-with-doubts.png"))); // NOI18N
         btnPreguntas.setText("PREGUNTAS");
         btnPreguntas.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153))));
         btnPreguntas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -84,7 +84,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
         btnUsuarios.setBackground(new java.awt.Color(75, 117, 137));
         btnUsuarios.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnUsuarios.setForeground(new java.awt.Color(0, 0, 29));
-        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/group.png"))); // NOI18N
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/group.png"))); // NOI18N
         btnUsuarios.setText("USUARIOS");
         btnUsuarios.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153))));
         btnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
