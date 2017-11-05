@@ -313,7 +313,7 @@ public class FrmJuego extends javax.swing.JFrame {
 
         btn10.setBackground(new java.awt.Color(204, 204, 204));
         btn10.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        btn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/back.png"))); // NOI18N
+        btn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/back.png"))); // NOI18N
         btn10.setText("inicio");
         btn10.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         btn10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -325,7 +325,7 @@ public class FrmJuego extends javax.swing.JFrame {
 
         btn11.setBackground(new java.awt.Color(204, 204, 204));
         btn11.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        btn11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/next.png"))); // NOI18N
+        btn11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/next.png"))); // NOI18N
         btn11.setText("Final");
         btn11.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         btn11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -337,7 +337,7 @@ public class FrmJuego extends javax.swing.JFrame {
 
         btnAnterior.setBackground(new java.awt.Color(204, 204, 204));
         btnAnterior.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/back.png"))); // NOI18N
+        btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/back.png"))); // NOI18N
         btnAnterior.setText("Anterior");
         btnAnterior.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
@@ -348,7 +348,7 @@ public class FrmJuego extends javax.swing.JFrame {
 
         btnSiguiente.setBackground(new java.awt.Color(204, 204, 204));
         btnSiguiente.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/next.png"))); // NOI18N
+        btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/next.png"))); // NOI18N
         btnSiguiente.setText("Siguiente");
         btnSiguiente.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -512,7 +512,7 @@ public class FrmJuego extends javax.swing.JFrame {
                     (ArrayList<int[]>) arreglo[0], (ArrayList<ArrayList<Opcion>>) arreglo[1]),
                     Integer.parseInt(idJuego), cedula)) {
 
-                Main.mensaje(350, 30, "Preparando el nuevo juego para el siguiente jugador", 3, "/Recursos/spinner-of-dots.png");
+                Main.mensaje(350, 30, "Preparando el nuevo juego para el siguiente jugador", 3, "/Recursos/Imagenes/spinner-of-dots.png");
                 this.dispose();
                 ventanaJuego = new FrmIniciarCrear(idJuego, participantes);
                 ventanaJuego.setLocationRelativeTo(null);
@@ -525,7 +525,7 @@ public class FrmJuego extends javax.swing.JFrame {
             if (controladorJuego.registrarPreguntasJuego(idPreguntas, controladorPreg.calificar(
                     (ArrayList<int[]>) arreglo[0], (ArrayList<ArrayList<Opcion>>) arreglo[1]),
                     Integer.parseInt(idJuego), cedula)) {
-                Main.mensaje(350, 30, "Gracias por jugar!!!Cargando las puntaciones", 3, "/Recursos/Cuenta.png");
+                Main.mensaje(350, 30, "Gracias por jugar!!!Cargando las puntaciones", 3, "/Recursos/Imagenes/Cuenta.png");
                 if (padre != null) {
                     FrmPuntuaciones punta = new FrmPuntuaciones(FrmCrearJuego.nombreJuego, padre);
                     punta.setLocationRelativeTo(null);

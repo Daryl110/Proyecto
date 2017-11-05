@@ -291,7 +291,7 @@
             <Component class="javax.swing.JLabel" name="lblGif">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Recursos/pinguino.gif"/>
+                  <Image iconType="3" name="/Recursos/Imagenes/pinguino.gif"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -303,7 +303,7 @@
             <Component class="javax.swing.JLabel" name="lblNube">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Recursos/icon.png"/>
+                  <Image iconType="3" name="/Recursos/Imagenes/icon.png"/>
                 </Property>
               </Properties>
               <Constraints>

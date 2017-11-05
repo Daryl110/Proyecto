@@ -173,11 +173,11 @@ public class pnlIniciarSesion extends javax.swing.JPanel {
         lblContrasena.setForeground(new java.awt.Color(255, 255, 255));
         lblContrasena.setText("Contraseña");
 
-        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/cropped-cropped-logoeam.png"))); // NOI18N
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/cropped-cropped-logoeam.png"))); // NOI18N
 
-        lblAstContraseña.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblAstContraseña.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
 
-        lblAstNombreUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblAstNombreUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
 
         lblCampos.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblCampos.setForeground(new java.awt.Color(255, 255, 255));
@@ -230,7 +230,7 @@ public class pnlIniciarSesion extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(35, 35, 35)
                                         .addComponent(lblCrearCuenta)))))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,7 +473,7 @@ public class pnlIniciarSesion extends javax.swing.JPanel {
 
     //Iniciar Sesion
     private void momentoIniciar(JFrame frame) {
-        Main.mensaje(100, 30, "Cargando...", 3, "/Recursos/spinner-of-dots.png");
+        Main.mensaje(100, 30, "Cargando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
         if (Main.ventanaPrincipal.isVisible()) {

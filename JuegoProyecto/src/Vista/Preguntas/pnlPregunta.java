@@ -81,7 +81,7 @@ public class pnlPregunta extends javax.swing.JPanel {
 
         rbtnA.setBackground(new java.awt.Color(0, 0, 29));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/pensar.gif"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/pensar.gif"))); // NOI18N
 
         pnlLblEnunciado2.setBorder(null);
 

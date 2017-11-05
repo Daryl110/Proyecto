@@ -6,6 +6,8 @@
 package Vista;
 
 import Controlador.Main;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -34,7 +36,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
         btnEstadisticas = new javax.swing.JButton();
         btnPreguntas = new javax.swing.JButton();
         btnUsuarios = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
+        pnlContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,17 +94,17 @@ public class FrmAdministrador extends javax.swing.JFrame {
             }
         });
 
-        jPanel5.setBackground(new java.awt.Color(0, 134, 150));
-        jPanel5.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153))));
+        pnlContenedor.setBackground(new java.awt.Color(0, 134, 150));
+        pnlContenedor.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153))));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlContenedorLayout = new javax.swing.GroupLayout(pnlContenedor);
+        pnlContenedor.setLayout(pnlContenedorLayout);
+        pnlContenedorLayout.setHorizontalGroup(
+            pnlContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlContenedorLayout.setVerticalGroup(
+            pnlContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 435, Short.MAX_VALUE)
         );
 
@@ -113,7 +115,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnEstadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -135,7 +137,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
                     .addComponent(btnPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -154,7 +156,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        Main.mensaje(145, 30, "Cerrando Sesión...", 3, "/Recursos/spinner-of-dots.png");
+        Main.mensaje(145, 30, "Cerrando Sesión...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         this.dispose();
         Main.abrirFrmPrincipal();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
@@ -176,6 +178,19 @@ public class FrmAdministrador extends javax.swing.JFrame {
         ventanaAdministrador.setLocationRelativeTo(null);
         ventanaAdministrador.setVisible(true);
     }
+    
+    //Metodo Para Visualizar Paneles
+    public void visualizar(String panel) {
+        try {
+            pnlContenedor.setLayout(new BorderLayout(5, 5));
+            JPanel pnl;
+//            if (panel.equalsIgnoreCase("estadisticas")) {
+//                pnl = 
+//            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
@@ -183,6 +198,6 @@ public class FrmAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btnPreguntas;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel pnlContenedor;
     // End of variables declaration//GEN-END:variables
 }

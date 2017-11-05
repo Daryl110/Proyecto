@@ -175,7 +175,7 @@
     <Component class="javax.swing.JLabel" name="lblIcono">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Recursos/cropped-cropped-logoeam.png"/>
+          <Image iconType="3" name="/Recursos/Imagenes/cropped-cropped-logoeam.png"/>
         </Property>
       </Properties>
     </Component>
@@ -330,28 +330,28 @@
     <Component class="javax.swing.JLabel" name="lblAstCedula">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Recursos/bloggif_59e7c9eb160c7.png"/>
+          <Image iconType="3" name="/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblAstPreg">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Recursos/bloggif_59e7c9eb160c7.png"/>
+          <Image iconType="3" name="/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblAstRes">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Recursos/bloggif_59e7c9eb160c7.png"/>
+          <Image iconType="3" name="/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblAstContra">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Recursos/bloggif_59e7c9eb160c7.png"/>
+          <Image iconType="3" name="/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"/>
         </Property>
       </Properties>
     </Component>

@@ -271,19 +271,19 @@ public class pnlRegistro extends javax.swing.JPanel {
         });
         add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 161, 256, 25));
 
-        lblCedula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblCedula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
         add(lblCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 26, 17, 25));
 
-        lblNombreUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblNombreUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
         add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 116, 17, 25));
 
-        lblContrasena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblContrasena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
         add(lblContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 160, 20, 30));
 
-        lblPreguntaS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblPreguntaS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
         add(lblPreguntaS, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 330, 17, 25));
 
-        lblRespuestaS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblRespuestaS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
         add(lblRespuestaS, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 375, 17, 25));
 
         lblNota.setForeground(new java.awt.Color(255, 0, 0));
@@ -298,7 +298,7 @@ public class pnlRegistro extends javax.swing.JPanel {
         lblObligatorios.setText("son Obligatorios.");
         add(lblObligatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 438, -1, -1));
 
-        lblCorreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblCorreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
         add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 205, 20, 30));
     }// </editor-fold>//GEN-END:initComponents
 

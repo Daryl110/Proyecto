@@ -72,7 +72,7 @@ public class pnlOlvideContraseña extends javax.swing.JPanel {
             }
         });
 
-        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/cropped-cropped-logoeam.png"))); // NOI18N
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/cropped-cropped-logoeam.png"))); // NOI18N
 
         lblIniciarSesion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblIniciarSesion.setForeground(new java.awt.Color(51, 153, 255));
@@ -145,13 +145,13 @@ public class pnlOlvideContraseña extends javax.swing.JPanel {
             }
         });
 
-        lblAstCedula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblAstCedula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
 
-        lblAstPreg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblAstPreg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
 
-        lblAstRes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblAstRes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
 
-        lblAstContra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblAstContra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
 
         lblCampos.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblCampos.setForeground(new java.awt.Color(255, 255, 255));

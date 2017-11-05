@@ -37,7 +37,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         lblImagen.setSize(775, 535);
         lblImagen.add(btnBoton);
         AudioClip sonido;
-        sonido = java.applet.Applet.newAudioClip(getClass().getResource("/Recursos/Never_Better.wav"));
+        sonido = java.applet.Applet.newAudioClip(getClass().getResource("/Recursos/Sonidos/Never_Better.wav"));
         sonido.play();
 
     }
@@ -95,7 +95,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         pnlContenedorImagen.add(btnBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 40));
 
-        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59dd4d1fa569b-iloveimg-resized.gif"))); // NOI18N
+        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59dd4d1fa569b-iloveimg-resized.gif"))); // NOI18N
         lblImagen.setText("La cuenta a sido creada exitodamente.");
         lblImagen.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pnlContenedorImagen.add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 590));
@@ -148,7 +148,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         
-        Main.mensaje(100, 30, "Cargando...", 3, "/Recursos/spinner-of-dots.png");
+        Main.mensaje(100, 30, "Cargando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         FrmCrearJuego ventanaCrearJuego = new FrmCrearJuego();
         ventanaCrearJuego.setLocationRelativeTo(null);
         ventanaCrearJuego.setVisible(true);

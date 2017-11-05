@@ -150,10 +150,10 @@ public class FrmUsuario extends javax.swing.JFrame {
         lblEtiqueta.setText("Texto");
         pnlContenedorDialogo.add(lblEtiqueta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
 
-        lblGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/pinguino.gif"))); // NOI18N
+        lblGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/pinguino.gif"))); // NOI18N
         pnlContenedorDialogo.add(lblGif, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
-        lblNube.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icon.png"))); // NOI18N
+        lblNube.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/icon.png"))); // NOI18N
         pnlContenedorDialogo.add(lblNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 270, 290));
 
         pnlContenedor.add(pnlContenedorDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 528, 640));
@@ -182,7 +182,7 @@ public class FrmUsuario extends javax.swing.JFrame {
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         // TODO add your handling code here:
         lblEtiqueta.setText("  Adios " + usu.getNombreUsu() + "...");
-        Main.mensaje(145, 30, "Cerrando Sesión...", 3, "/Recursos/spinner-of-dots.png");
+        Main.mensaje(145, 30, "Cerrando Sesión...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         this.dispose();
         Main.abrirFrmPrincipal();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
@@ -196,7 +196,7 @@ public class FrmUsuario extends javax.swing.JFrame {
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Main.mensaje(100, 30, "Cargando...", 3, "/Recursos/spinner-of-dots.png");
+        Main.mensaje(100, 30, "Cargando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         FrmCrearJuego ventanaCrearJuego = new FrmCrearJuego(this);
         ventanaCrearJuego.setLocationRelativeTo(null);
         ventanaCrearJuego.setVisible(true);

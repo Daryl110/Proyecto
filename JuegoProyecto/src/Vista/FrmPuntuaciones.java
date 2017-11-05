@@ -148,7 +148,7 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
 
     private void btnVolverJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverJugarActionPerformed
         this.dispose();
-        Main.mensaje(100, 30, "Cargando...", 3, "/Recursos/spinner-of-dots.png");
+        Main.mensaje(100, 30, "Cargando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         FrmCrearJuego ventanaCrearJuego = new FrmCrearJuego();
         ventanaCrearJuego.setLocationRelativeTo(null);
         ventanaCrearJuego.setVisible(true);
@@ -156,7 +156,7 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
 
     private void btnVolverInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverInicioActionPerformed
         this.dispose();
-        Main.mensaje(115, 30, "Cargando...", 3, "/Recursos/spinner-of-dots.png");
+        Main.mensaje(115, 30, "Cargando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         if (padre != null) {
             padre.setVisible(true);
         } else {

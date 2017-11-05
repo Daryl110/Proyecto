@@ -127,7 +127,7 @@ public class FrmCrearJuego extends javax.swing.JFrame {
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
         pnlContenedorTotal.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 47, 28));
 
-        lblNombreJuego.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bloggif_59e7c9eb160c7.png"))); // NOI18N
+        lblNombreJuego.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/bloggif_59e7c9eb160c7.png"))); // NOI18N
         pnlContenedorTotal.add(lblNombreJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         pnlContenedorDialogo.setBackground(new java.awt.Color(0, 0, 29));
@@ -137,10 +137,10 @@ public class FrmCrearJuego extends javax.swing.JFrame {
         lblEtiqueta.setText("Texto");
         pnlContenedorDialogo.add(lblEtiqueta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
-        lblGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/pinguino-iloveimg-resized.gif"))); // NOI18N
+        lblGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/pinguino-iloveimg-resized.gif"))); // NOI18N
         pnlContenedorDialogo.add(lblGif, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 74, -1, -1));
 
-        lblNube.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icon-iloveimg-resized (1).png"))); // NOI18N
+        lblNube.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/icon-iloveimg-resized (1).png"))); // NOI18N
         pnlContenedorDialogo.add(lblNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, 160));
 
         pnlContenedorTotal.add(pnlContenedorDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 388, 337));
@@ -162,7 +162,7 @@ public class FrmCrearJuego extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Main.mensaje(115, 30, "Cancelando...", 3, "/Recursos/spinner-of-dots.png");
+        Main.mensaje(115, 30, "Cancelando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         if (padre != null) {
             padre.setVisible(true);
         } else {
@@ -173,7 +173,7 @@ public class FrmCrearJuego extends javax.swing.JFrame {
     private void btnIIniciarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIIniciarJuegoActionPerformed
 
         if (!txtNombreJuego.getText().trim().isEmpty() && !txtNombreJuego.getText().trim().equalsIgnoreCase("Nombre del juego")) {
-            Main.mensaje(150, 30, "Iniciando Partida...", 3, "/Recursos/spinner-of-dots.png");
+            Main.mensaje(150, 30, "Iniciando Partida...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
             SimpleDateFormat d = new SimpleDateFormat("YYYY/MM/d");
             Date date = new Date();
             if (controJuego.solicitudRegistro(Integer.parseInt(jSpinner1.getValue() + ""), txtNombreJuego.getText().trim(),d.format(date))) {
@@ -188,7 +188,7 @@ public class FrmCrearJuego extends javax.swing.JFrame {
                 ventanaJuego.setVisible(true);
                 this.dispose();
             } else {
-                Main.mensaje(300, 30, "EL NOMBRE DEL JUEGO NO ESTA DISPONIBLE", 2, "/Recursos/cancel.png");
+                Main.mensaje(300, 30, "EL NOMBRE DEL JUEGO NO ESTA DISPONIBLE", 2, "/Recursos/Imagenes/cancel.png");
                 txtNombreJuego.setBorder(new LineBorder(Color.red));
             }
         } else {
