@@ -30,11 +30,11 @@ public class CtlJuego {
         controladorDAO = new CtlDAO();
     }
 
-    public void eliminarUltimoJuego(){
+    public void eliminarUltimoJuego() {
         String ultimoId = controladorDAO.getUltimoId("juego", "idJuego");
         dao.eliminar("juego", "idJuego", ultimoId);
     }
-    
+
     public DefaultTableModel listarPuntuacion(int cedula) {
 
         String[] nombreColumnas = {"Nombre del juego", "Puntuación", "Fecha de juego"};
@@ -52,7 +52,7 @@ public class CtlJuego {
                 puntua.add(traerDato(resultado.getString("idJuego"), "fechaJuego"));
             }
         } catch (SQLException e) {
-            
+
         }
 
         int gdeveinte = 0, contador = 0;
@@ -147,5 +147,42 @@ public class CtlJuego {
         return model;
 
     }
-    
+
+    public DefaultTableModel listaEstadistica() throws SQLException {
+        String[] nombreColumnas = {"Nombre Usuario", "Puntaje", "Nombre de juego"};
+        DefaultTableModel model = new DefaultTableModel(new Object[][]{}, nombreColumnas);
+
+        try {
+            ArrayList<Puntuacion> lista = new ArrayList<>();
+            ResultSet resultado = dao.traerListar("resultado");
+            int cedula = resultado.getInt("cedula");
+            int idJuego = resultado.getInt("idJuego");
+            int suma = resultado.getInt("puntaje");
+
+            while (resultado.next()) {
+                if (idJuego == resultado.getInt("idJuego") && idJuego == resultado.getInt("idJuego")) {
+                    idJuego = resultado.getInt("idJuego");
+                    cedula = resultado.getInt("cedula");
+                    suma = suma + resultado.getInt("puntaje");
+                } else {
+                    punta = new Puntuacion(cedula + "", suma, idJuego + "");
+                    lista.add(punta);
+                    idJuego = resultado.getInt("idJuego");
+                    cedula = resultado.getInt("cedula");
+                }
+            }
+
+            for (int i = 0; i < 10; i++) {
+                model.addRow(new Object[]{lista.get(i).getCedula(),
+                    lista.get(i).getPuntuacion(),
+                    lista.get(i).getNombreUsuario()});
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return model;
+    }
+
 }

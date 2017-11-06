@@ -8,6 +8,7 @@ package Vista;
 import Controlador.Main;
 import Vista.Admin.pnlEstadisticas;
 import Vista.Admin.pnlPregUsus;
+import Vista.Login.pnlRegistro;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -17,9 +18,8 @@ import javax.swing.JPanel;
  */
 public class FrmAdministrador extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmAdministrador
-     */
+    
+
     public FrmAdministrador() {
         initComponents();
     }
@@ -109,7 +109,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
         );
         pnlContenedorLayout.setVerticalGroup(
             pnlContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGap(0, 624, Short.MAX_VALUE)
         );
 
         btnUsuarios1.setBackground(new java.awt.Color(75, 117, 137));
@@ -131,7 +131,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnEstadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,9 +142,8 @@ public class FrmAdministrador extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,19 +156,19 @@ public class FrmAdministrador extends javax.swing.JFrame {
                     .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUsuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -183,22 +182,22 @@ public class FrmAdministrador extends javax.swing.JFrame {
 
     private void btnEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticasActionPerformed
         // TODO add your handling code here:
-        visualizar("estadisticas",0);
+        visualizar("estadisticas", 0);
     }//GEN-LAST:event_btnEstadisticasActionPerformed
 
     private void btnPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreguntasActionPerformed
         // TODO add your handling code here:
-        visualizar("preguntas",1);
+        visualizar("preguntas", 1);
     }//GEN-LAST:event_btnPreguntasActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
         // TODO add your handling code here:
-        visualizar("preguntas",0);
+        visualizar("preguntas", 0);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnUsuarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarios1ActionPerformed
         // TODO add your handling code here:
-        visualizar("temas",2);
+        visualizar("temas", 2);
     }//GEN-LAST:event_btnUsuarios1ActionPerformed
 
     public static void main(String[] args) {
@@ -206,15 +205,16 @@ public class FrmAdministrador extends javax.swing.JFrame {
         ventanaAdministrador.setLocationRelativeTo(null);
         ventanaAdministrador.setVisible(true);
     }
-    
+
     //Metodo Para Visualizar Paneles
-    public void visualizar(String panel,int index) {
+    public void visualizar(String panel, int index) {
         try {
             pnlContenedor.removeAll();
             pnlContenedor.setLayout(new BorderLayout(5, 5));
             JPanel pnl = new JPanel();
             if (panel.equalsIgnoreCase("estadisticas")) {
-                pnl = new pnlEstadisticas();
+                pnlRegistro pnlformulario = new pnlRegistro(false);
+                pnl = new pnlEstadisticas(pnlformulario);
             }
             if (panel.equalsIgnoreCase("Preguntas")) {
                 pnl = new pnlPregUsus(index);
@@ -222,7 +222,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
             if (panel.equalsIgnoreCase("temas")) {
                 pnl = new pnlPregUsus(index);
             }
-            pnlContenedor.add(pnl,BorderLayout.CENTER);
+            pnlContenedor.add(pnl, BorderLayout.CENTER);
             pnlContenedor.updateUI();
         } catch (ArrayIndexOutOfBoundsException e) {
 

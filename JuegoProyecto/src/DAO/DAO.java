@@ -41,6 +41,7 @@ public class DAO {
 
     public ResultSet traerListar(String nombreTabla) {
         String consulta = "select * from " + nombreTabla;
+        System.out.println(consulta);
         return Main.conec.ejecutarRetorno(consulta);
     }
 

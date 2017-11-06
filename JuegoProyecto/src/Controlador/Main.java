@@ -54,7 +54,7 @@ public class Main {
             ventanaPrincipal.setLocationRelativeTo(null);
             ventanaPrincipal.setVisible(true);
         });
-            musica(ventanaPrincipal);
+//            musica(ventanaPrincipal);
     }
 
     //Metodo Para Llamar a Mensaje De Tiempo
