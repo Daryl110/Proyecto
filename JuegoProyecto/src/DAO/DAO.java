@@ -63,12 +63,15 @@ public class DAO {
         return Main.conec.ejecutarRetorno(senteciaSQL);
     }
 
-    public ResultSet traerBuscarAvanzado(String nombreTabla, String llavePrimaria, String dato,String llavePrimaria2, String dato2) {
+    public ResultSet traerBuscarAvanzado(String nombreTabla, String llavePrimaria, String dato, String llavePrimaria2, String dato2) {
         String senteciaSQL = "SELECT * FROM " + nombreTabla + " WHERE " + llavePrimaria + "='" + dato + "' and " + llavePrimaria2 + "='" + dato2 + "'";
         return Main.conec.ejecutarRetorno(senteciaSQL);
     }
 
     public boolean eliminar(String nombreTabla, String llavePrimaria, String dato) {
+        if (!validarCampo(dato, llavePrimaria, nombreTabla)) {
+            return false;
+        }
         String senteciaSQL = "DELETE FROM " + nombreTabla + " WHERE " + llavePrimaria + "='" + dato + "'";
         return Main.conec.ejecutar(senteciaSQL);
     }
@@ -80,6 +83,11 @@ public class DAO {
 
     public ResultSet getNumeroRegistros(String tabla) {
         String senteciaSQL = "SELECT COUNT(*) FROM " + tabla;
+        return Main.conec.ejecutarRetorno(senteciaSQL);
+    }
+
+    public ResultSet getUltimoId(String tabla, String llavePrimaria) {
+        String senteciaSQL = "SELECT MAX(" + llavePrimaria + ") FROM " + tabla;
         return Main.conec.ejecutarRetorno(senteciaSQL);
     }
 

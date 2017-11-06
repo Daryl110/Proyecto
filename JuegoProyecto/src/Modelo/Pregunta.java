@@ -22,7 +22,7 @@ public class Pregunta {
 
     public Pregunta() {
     }
-
+    
     public int getIdTipoPregunta() {
         return idTipoPregunta;
     }

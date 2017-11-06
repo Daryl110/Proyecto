@@ -11,6 +11,8 @@ import Modelo.Pregunta;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,8 +27,57 @@ public class CtlPregunta {
         dao = new DAO();
         controladorDAO = new CtlDAO();
     }
+    
+    public DefaultComboBoxModel listarTipoPregunta() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement("Seleccione un Tipo de pregunta");
+        return dao.cargarInformacionCB("tipoPregunta", "enunciado", modelo);
+    }
+    
+    public boolean añadirOpcion(int correcta,String enunciado){
+        int ultimoId = Integer.parseInt(controladorDAO.getUltimoId("pregunta", "idPregunta"));
+        return controladorDAO.solicitudRegistro(new Opcion(ultimoId, correcta, enunciado), "opcion");
+    }
+    
+    public int getUltimoId(){
+        return Integer.parseInt(controladorDAO.getUltimoId("pregunta", "idPregunta"));
+    }
+    
+    public String traerDato(String nombreTabla,String atributoSolicitado,String valorIgualar,String valor){
+        return dao.traerDato(nombreTabla, atributoSolicitado, valorIgualar, valor);
+    }
+    
+    public boolean registrarPregunta(int idTema,int idTipoPregunta,String enunciado){
+        return controladorDAO.solicitudRegistro(new Pregunta(idTema, enunciado, idTipoPregunta), "pregunta");
+    }
+    
+    public DefaultTableModel listarPreguntas(){
+        return listarRegistro(dao.traerListar("pregunta"));
+    }
+    
+    private DefaultTableModel listarRegistro(ResultSet resultado) {
 
-    public Pregunta traerPregunta(int id) {
+        String[] nombreColumnas = {"Numero de la pregunta","Enunciado","Tema","Tipo de Pregunta"};
+
+        DefaultTableModel model = new DefaultTableModel(new Object[][]{}, nombreColumnas);
+
+        try {
+            while (resultado.next()) {
+                model.addRow(new Object[]{resultado.getString("idPregunta"),resultado.getString("enunciado"),
+                    dao.traerDato("tema", "nombre", "idTema", resultado.getString("idTema")),
+                    dao.traerDato("tipoPregunta", "enunciado", "idTipoPregunta", resultado.getString("idTipoPregunta"))});
+            }
+        } catch (SQLException e) {
+            System.out.println("Esto se tosto");
+        }
+
+        return model;
+    }
+
+    public Pregunta traerPregunta(int id)throws NullPointerException{
+        if (!dao.validarCampo(id+"", "idPregunta", "pregunta")) {
+            return null;
+        }
         return (Pregunta) controladorDAO.sqlToObject("pregunta", "idPregunta", id + "", new Pregunta(0, "", 0));
     }
 
@@ -35,7 +86,7 @@ public class CtlPregunta {
         int[] idOpciones = traerOpciones(idPregunta);
 
         for (int i = 0; i < idOpciones.length; i++) {
-            opciones.add((Opcion) controladorDAO.sqlToObject("opcion", "idOpcion", idOpciones[i] + "", new Opcion(0,0, 0, "")));
+            opciones.add((Opcion) controladorDAO.sqlToObject("opcion", "idOpcion", idOpciones[i] + "", new Opcion(0, 0, "")));
         }
 
         return opciones;

@@ -216,8 +216,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         }
     }
-
-    //Metodo Para Vaciar Campos
+    
+    /**
+     * Metodo Para Vaciar Campos
+     * @param texto - sirve para contener o borrar el spam(etiqueta dentro del txt)
+     * @param txt - sirve para saber a que txt se hace referencia
+     * @param color - sirve para cambiar el color de letra
+     */
     public void vaciarCampo(String texto, JTextField txt, Color color) {
         if (txt.getText().trim().equalsIgnoreCase(texto)) {
             txt.setText("");

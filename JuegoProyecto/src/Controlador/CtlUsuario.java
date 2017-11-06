@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,9 +26,39 @@ public class CtlUsuario {
         dao = new DAO();
         controladorDAO = new CtlDAO();
     }
+    
+    public boolean solicitarEliminar(String dato) {
+        return dao.eliminar("usuario", "cedula", dato);
+    }
+    
+    public DefaultTableModel listar(){
+        return listarRegistro(dao.traerListar("usuario"));
+    }
+    
+    private DefaultTableModel listarRegistro(ResultSet resultado) {
+
+        String[] nombreColumnas = {"Cedula", "Nombre", "Nombre de usuario", "Correo", "Telefono", "Semestre"};
+
+        DefaultTableModel model = new DefaultTableModel(new Object[][]{}, nombreColumnas);
+
+        try {
+            while (resultado.next()) {
+                model.addRow(new Object[]{resultado.getInt("cedula"), resultado.getString("nombre"),
+                    resultado.getString("nombreUsu"), resultado.getString("correo"),
+                    resultado.getInt("telefono"), resultado.getString("semestre")});
+            }
+        } catch (SQLException e) {
+            System.out.println("Esto se tosto");
+        }
+
+        return model;
+    }
 
     public Usuario traerUsuario(String nombreUsu) {
         return (Usuario) controladorDAO.sqlToObject("usuario", "nombreUsu", nombreUsu, new Usuario(0, 0, 0, "", "", "", "", "", ""));
+    }
+    public Usuario traerUsuario(int cedula) {
+        return (Usuario) controladorDAO.sqlToObject("usuario", "cedula", cedula+"", new Usuario(0, 0, 0, "", "", "", "", "", ""));
     }
     public String traerDato(String nombreUsu, String columna) {
         return dao.traerDato("usuario", columna, "nombreUsu", nombreUsu);

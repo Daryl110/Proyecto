@@ -30,6 +30,11 @@ public class CtlJuego {
         controladorDAO = new CtlDAO();
     }
 
+    public void eliminarUltimoJuego(){
+        String ultimoId = controladorDAO.getUltimoId("juego", "idJuego");
+        dao.eliminar("juego", "idJuego", ultimoId);
+    }
+    
     public DefaultTableModel listarPuntuacion(int cedula) {
 
         String[] nombreColumnas = {"Nombre del juego", "Puntuación", "Fecha de juego"};

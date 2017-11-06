@@ -9,6 +9,7 @@ import DAO.DAO;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,6 +35,18 @@ public class CtlDAO {
         parser = new JsonParser();
         gson = new Gson();
         dao = new DAO();
+    }
+    
+    public String getUltimoId(String tabla,String llavePrimaria){
+        ResultSet result = dao.getUltimoId(tabla , llavePrimaria);
+        try {
+            if (result.next()) {
+                String cantidaRegistros = result.getString("MAX("+llavePrimaria+")");
+                return cantidaRegistros;
+            }
+        } catch (SQLException e) {
+        }
+        return null;
     }
     
     public int getNumeroRegistros(String tabla){
@@ -93,6 +106,23 @@ public class CtlDAO {
 
         return dao.registrarYModificar(sentenciaSQL);
     }
+    public boolean solicitarModificar(Object objeto, String tabla, String llavePrimaria,String dato) {
+
+        darValores(objeto);
+        
+        sentenciaSQL = "UPDATE " + tabla + " SET ";
+
+        while (camposI.hasNext()) {
+            sentenciaSQL += camposI.next() + "='" + valoresI.next();
+            if (camposI.hasNext()) {
+                sentenciaSQL += "',";
+            } else {
+                sentenciaSQL += "' WHERE " + llavePrimaria + "='" + dato + "'";
+            }
+        }
+
+        return dao.registrarYModificar(sentenciaSQL);
+    }
 
     public Object sqlToObject(String nombreTabla, String llavePrimaria, String dato, Object objeto) {
 
@@ -101,6 +131,8 @@ public class CtlDAO {
         darValores(objeto);
 
         String sentenciaJSON = "{ ";
+        
+        Object objet = null;
 
         try {
             rb.next();
@@ -123,10 +155,11 @@ public class CtlDAO {
                     }
                 }
             }
-        } catch (SQLException e) {
+            objet = gson.fromJson(sentenciaJSON, objeto.getClass());
+        } catch (JsonSyntaxException | SQLException e) {
             
         }
-        return gson.fromJson(sentenciaJSON, objeto.getClass());
+        return objet;
     }
     
     private void darValores(Object objeto){
