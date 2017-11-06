@@ -9,6 +9,7 @@ import Controlador.CtlJuego;
 import Controlador.CtlPregunta;
 import Controlador.Main;
 import Modelo.Opcion;
+import Modelo.Pregunta;
 import static Vista.FrmCrearJuego.ventanaJuego;
 import Vista.Preguntas.pnlPregunta;
 import java.applet.AudioClip;
@@ -777,12 +778,16 @@ public class FrmJuego extends javax.swing.JFrame {
     }
 
     private void cargarPreguntas(int contador) {
+        //Hay q mejorar este metodo para no cargar preguntas con id eliminado
         if (contador < 10) {
-            int numero = (int) (Math.random() * controladorPreg.getNumeroRegistros()) + 1;
+            int numero = (int) (Math.random() * controladorPreg.getUltimoId()) + 1;
             if (validarIgualdad(numero)) {
-                preguntas.add(new pnlPregunta(controladorPreg.traerPregunta(numero), controladorPreg.getOpciones(numero)));
-                idPreguntas[contador] = numero;
-                cargarPreguntas(contador + 1);
+                Pregunta preg = controladorPreg.traerPregunta(numero);
+                if (preg != null) {
+                    preguntas.add(new pnlPregunta(preg, controladorPreg.getOpciones(numero)));
+                    idPreguntas[contador] = numero;
+                    cargarPreguntas(contador + 1);
+                }
             } else {
                 cargarPreguntas(contador);
             }

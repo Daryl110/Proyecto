@@ -57,7 +57,7 @@ public class pnlRegistro extends javax.swing.JPanel {
         }
     }
 
-    public pnlRegistro(Usuario usu, boolean modificador, JDialog padre, JPanel abuelo) {
+    public pnlRegistro(Usuario usu, boolean modificador, JDialog padre, JPanel abuelo)throws NullPointerException{
         initComponents();
         ocultarAsteriscos();
         cbPreguntaS.setModel(Main.controUsuario.solicitarListarEnCB("preguntaUsuario", "enunciado"));

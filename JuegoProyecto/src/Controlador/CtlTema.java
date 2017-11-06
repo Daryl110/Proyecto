@@ -44,9 +44,14 @@ public class CtlTema {
         Tema tema = new Tema(nombreTema);
         return controladorDAO.solicitudRegistro(tema, "tema");
     }
-    public boolean modificar(String nombreTema){
+    
+    public boolean modificar(String nombreTema,String idTema){
         Tema tema = new Tema(nombreTema);
-        return controladorDAO.solicitarModificar(tema, "tema", "idTema");
+        return controladorDAO.solicitarModificar(tema, "tema", "idTema",idTema);
+    }
+    
+    public boolean eliminar(String idTema){
+        return dao.eliminar("tema", "idTema", idTema);
     }
     
     private DefaultTableModel listarRegistro(ResultSet resultado) {

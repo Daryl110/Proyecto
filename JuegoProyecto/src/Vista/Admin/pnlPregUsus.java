@@ -32,14 +32,17 @@ public class pnlPregUsus extends javax.swing.JPanel {
         switch (modificador) {
             case 0:
                 tbl.setModel(Main.controUsuario.listar());
+                btnInformacion.setVisible(false);
                 break;
             case 1:
                 controladorPreg = new CtlPregunta();
-//            tbl.setModel(controladorPreg.listar());
+                tbl.setModel(controladorPreg.listarPreguntas());
+                btnInformacion.setVisible(true);
                 break;
             case 2:
                 controladorTema = new CtlTema();
                 tbl.setModel(controladorTema.listar());
+                btnInformacion.setVisible(false);
                 break;
         }
     }
@@ -54,27 +57,16 @@ public class pnlPregUsus extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbl = new javax.swing.JTable();
         btnUsuarios = new javax.swing.JButton();
         btnUsuarios1 = new javax.swing.JButton();
         btnUsuarios2 = new javax.swing.JButton();
         btnUsuarios3 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl = new javax.swing.JTable();
+        btnInformacion = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 134, 150));
-
-        tbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tbl);
 
         btnUsuarios.setBackground(new java.awt.Color(75, 117, 137));
         btnUsuarios.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -128,15 +120,61 @@ public class pnlPregUsus extends javax.swing.JPanel {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(0, 134, 150));
+
+        tbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbl);
+
+        btnInformacion.setBackground(new java.awt.Color(75, 117, 137));
+        btnInformacion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnInformacion.setForeground(new java.awt.Color(0, 0, 29));
+        btnInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/information-button.png"))); // NOI18N
+        btnInformacion.setText("INFORMACIÓN DE PREGUNTA");
+        btnInformacion.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153))));
+        btnInformacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInformacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInformacionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(234, 234, 234))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnUsuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,8 +193,8 @@ public class pnlPregUsus extends javax.swing.JPanel {
                     .addComponent(btnUsuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUsuarios2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUsuarios3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -183,8 +221,7 @@ public class pnlPregUsus extends javax.swing.JPanel {
                 ventana = new FrmPregUsu(null, true, 1, this);
                 break;
             case 2:
-                ventana = new FrmTema(null, true);
-                tbl.setModel(controladorTema.listar());
+                ventana = new FrmTema(null, true, this);
                 break;
             default:
                 return;
@@ -201,7 +238,12 @@ public class pnlPregUsus extends javax.swing.JPanel {
                 case 0:
                     String cedula = JOptionPane.showInputDialog("Ingrese La Cedula Del Usuario Que Desea Modificar");
                     if (cedula != null) {
-                        ventana = new FrmPregUsu(Main.controUsuario.traerUsuario(Integer.parseInt(cedula)), null, true, 0, this);
+                        try {
+                            ventana = new FrmPregUsu(Main.controUsuario.traerUsuario(Integer.parseInt(cedula)), null, true, 0, this);
+                        } catch (NullPointerException e) {
+                            JOptionPane.showMessageDialog(null, "No ha ingresado una cedula valida");
+                            return;
+                        }
                     } else {
                         return;
                     }
@@ -212,9 +254,13 @@ public class pnlPregUsus extends javax.swing.JPanel {
                 case 2:
                     String idTema = JOptionPane.showInputDialog("Ingrese el numero del tema que desea modificar");
                     if (idTema != null) {
-                        ventana = new FrmTema(null, true);
-                        tbl.setModel(controladorTema.listar());
-                    }else{
+                        try {
+                            ventana = new FrmTema(idTema, controladorTema.traerTema(idTema), null, true, this);
+                        } catch (NullPointerException e) {
+                            JOptionPane.showMessageDialog(null, "No ha ingresado un numero de tema valido");
+                            return;
+                        }
+                    } else {
                         return;
                     }
                     break;
@@ -222,10 +268,19 @@ public class pnlPregUsus extends javax.swing.JPanel {
                     return;
             }
         } else {
-            if (modificador == 0) {
-                ventana = new FrmPregUsu(Main.controUsuario.traerUsuario((int) tbl.getValueAt(tbl.getSelectedRow(), 0)), null, true, 0, this);
-            } else {
-                ventana = new FrmPregUsu(null, true, 1, this);
+            switch (modificador) {
+                case 0:
+                    ventana = new FrmPregUsu(Main.controUsuario.traerUsuario((int) tbl.getValueAt(tbl.getSelectedRow(), 0)), null, true, 0, this);
+                    break;
+                case 1:
+                    ventana = new FrmPregUsu(null, true, 1, this);
+                    break;
+                case 2:
+                    ventana = new FrmTema(tbl.getValueAt(tbl.getSelectedRow(), 0) + "", controladorTema.traerTema(tbl.getValueAt(tbl.getSelectedRow(), 0) + ""), null, true, this);
+                    tbl.setModel(controladorTema.listar());
+                    break;
+                default:
+                    return;
             }
         }
         ventana.setLocationRelativeTo(null);
@@ -235,54 +290,96 @@ public class pnlPregUsus extends javax.swing.JPanel {
     private void btnUsuarios2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarios2ActionPerformed
         // TODO add your handling code here:
         if (tbl.getSelectedRow() == -1) {
-            if (modificador == 0) {
-                String cedula = JOptionPane.showInputDialog("Ingrese La Cedula Del Usuario Que Desea Modificar");
-                Main.controUsuario.solicitarEliminar(cedula);
-                tbl.setModel(Main.controUsuario.listar());
-            } else {
+            switch (modificador) {
+                case 0:
+                    String cedula = JOptionPane.showInputDialog("Ingrese La Cedula Del Usuario Que Desea Eliminar");
+                    if (cedula != null) {
+                        if (Main.controUsuario.solicitarEliminar(cedula)) {
+                            JOptionPane.showMessageDialog(null, "Usuario Eliminado");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se encontro el usuario");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No ha ingresado nada");
+                    }
+                    tbl.setModel(Main.controUsuario.listar());
+                    break;
+                case 1:
 
+                    break;
+                case 2:
+                    String idTema = JOptionPane.showInputDialog("Ingrese el numero del tema que desea Eliminar");
+                    if (idTema != null) {
+                        if (controladorTema.eliminar(idTema)) {
+                            JOptionPane.showMessageDialog(null, "Tema Eliminado");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se encontro el tema");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No ha ingresado nada");
+                    }
+                    tbl.setModel(controladorTema.listar());
+                    break;
             }
         } else {
-            if (modificador == 0) {
-                String cedula = tbl.getValueAt(tbl.getSelectedRow(), 0) + "";
-                int desicion = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el usuario con la cedula: " + cedula);
-                if (desicion == 0) {
-                    Main.controUsuario.solicitarEliminar(cedula);
-                    tbl.setModel(Main.controUsuario.listar());
-                }
-            } else {
+            int desicion;
+            switch (modificador) {
+                case 0:
+                    String cedula = tbl.getValueAt(tbl.getSelectedRow(), 0) + "";
+                    desicion = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el usuario con la cedula: " + cedula);
+                    if (desicion == 0) {
+                        Main.controUsuario.solicitarEliminar(cedula);
+                        tbl.setModel(Main.controUsuario.listar());
+                    }
+                    break;
+                case 1:
 
+                    break;
+                case 2:
+                    String idTema = tbl.getValueAt(tbl.getSelectedRow(), 0) + "";
+                    desicion = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el tema numero: " + idTema);
+                    if (desicion == 0) {
+                        controladorTema.eliminar(idTema);
+                        tbl.setModel(controladorTema.listar());
+                    }
+                    break;
             }
         }
     }//GEN-LAST:event_btnUsuarios2ActionPerformed
 
     private void btnUsuarios3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarios3ActionPerformed
         // TODO add your handling code here:
-        if (modificador == 0) {
-            tbl.setModel(Main.controUsuario.listar());
-        } else {
-            controladorPreg = new CtlPregunta();
-//            tbl.setModel(controladorPreg.listar());
-        }
+        listar();
     }//GEN-LAST:event_btnUsuarios3ActionPerformed
+
+    private void btnInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInformacionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInformacion;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnUsuarios1;
     private javax.swing.JButton btnUsuarios2;
     private javax.swing.JButton btnUsuarios3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl;
     // End of variables declaration//GEN-END:variables
 
     public void listar() {
-        if (modificador == 0) {
-            tbl.setModel(Main.controUsuario.listar());
-        } else {
-            controladorPreg = new CtlPregunta();
-//            tbl.setModel(controladorPreg.listar());
+        switch (modificador) {
+            case 0:
+                tbl.setModel(Main.controUsuario.listar());
+                break;
+            case 1:
+                tbl.setModel(controladorPreg.listarPreguntas());
+                break;
+            case 2:
+                tbl.setModel(controladorTema.listar());
+                break;
         }
     }
 }

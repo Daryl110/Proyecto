@@ -20,30 +20,33 @@ import javax.swing.border.LineBorder;
 public class FrmTema extends javax.swing.JDialog {
 
     private CtlTema controladorTema;
+    private String idTema;
     private Tema tema;
-    private JPanel padre;
+    private pnlPregUsus padre;
 
     /**
      * Creates new form FrmTema
      */
-    public FrmTema(java.awt.Frame parent, boolean modal) {
+    public FrmTema(java.awt.Frame parent, boolean modal,JPanel padre) {
         super(parent, modal);
         initComponents();
         btn.requestFocus();
         lbl.setVisible(false);
         controladorTema = new CtlTema();
-        this.padre = padre;
+        this.padre = (pnlPregUsus)padre;
     }
 
-    public FrmTema(Tema tema, java.awt.Frame parent, boolean modal) {
+    public FrmTema(String idTema,Tema tema, java.awt.Frame parent, boolean modal,JPanel padre)throws NullPointerException{
         super(parent, modal);
         initComponents();
         btn.requestFocus();
         lbl.setVisible(false);
         controladorTema = new CtlTema();
+        this.idTema = idTema;
         this.tema = tema;
         btn.setText("MODIFICAR");
-        this.padre = padre;
+        this.padre = (pnlPregUsus)padre;
+        txtNTema.setText(tema.getNombreTema());
     }
 
     /**
@@ -154,13 +157,15 @@ public class FrmTema extends javax.swing.JDialog {
                 if (controladorTema.registrar(txtNTema.getText().trim())) {
                     Main.mensaje(300, 30, "TEMA CREADO!!!", 3, "/Recursos/Imagenes/Cuenta.png");
                     this.dispose();
+                    padre.listar();
                 } else {
                     Main.mensaje(300, 30, "FALLO AL CREAR TEMA!!!", 3, "/Recursos/Imagenes/cancel.png");
                 }
             }else{
                 Main.mensaje(300, 30, "MODIFICANDO TEMA....", 3, "/Recursos/Imagenes/spinner-of-dots.png");
-                if (controladorTema.modificar(txtNTema.getText().trim())) {
+                if (controladorTema.modificar(txtNTema.getText().trim(),idTema)) {
                     Main.mensaje(300, 30, "TEMA MODIFICADO!!!", 3, "/Recursos/Imagenes/Cuenta.png");
+                    padre.listar();
                     this.dispose();
                 } else {
                     Main.mensaje(300, 30, "FALLO AL MODIFICAR TEMA!!!", 3, "/Recursos/Imagenes/cancel.png");
