@@ -240,7 +240,7 @@ public class pnlPregUsus extends javax.swing.JPanel {
                     if (cedula != null) {
                         try {
                             ventana = new FrmPregUsu(Main.controUsuario.traerUsuario(Integer.parseInt(cedula)), null, true, 0, this);
-                        } catch (NullPointerException e) {
+                        } catch (NullPointerException | NumberFormatException e) {
                             JOptionPane.showMessageDialog(null, "No ha ingresado una cedula valida");
                             return;
                         }
@@ -249,14 +249,24 @@ public class pnlPregUsus extends javax.swing.JPanel {
                     }
                     break;
                 case 1:
-                    ventana = new FrmPregUsu(null, true, 1, this);
+                    String idPreg = JOptionPane.showInputDialog("Ingrese el numero de la pregunta que desea modificar");
+                    if (idPreg != null) {
+                        try {
+                            ventana = new FrmPregUsu(controladorPreg.traerPregunta(Integer.parseInt(idPreg)), idPreg, null, true, this);
+                        } catch (NullPointerException | NumberFormatException e) {
+                            JOptionPane.showMessageDialog(null, "No ha ingresado un numero de pregunta valida");
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
                     break;
                 case 2:
                     String idTema = JOptionPane.showInputDialog("Ingrese el numero del tema que desea modificar");
                     if (idTema != null) {
                         try {
                             ventana = new FrmTema(idTema, controladorTema.traerTema(idTema), null, true, this);
-                        } catch (NullPointerException e) {
+                        } catch (NullPointerException | NumberFormatException e) {
                             JOptionPane.showMessageDialog(null, "No ha ingresado un numero de tema valido");
                             return;
                         }
@@ -273,7 +283,10 @@ public class pnlPregUsus extends javax.swing.JPanel {
                     ventana = new FrmPregUsu(Main.controUsuario.traerUsuario((int) tbl.getValueAt(tbl.getSelectedRow(), 0)), null, true, 0, this);
                     break;
                 case 1:
-                    ventana = new FrmPregUsu(null, true, 1, this);
+                    ventana = new FrmPregUsu(controladorPreg.traerPregunta(
+                            Integer.parseInt(tbl.getValueAt(tbl.getSelectedRow(), 0) + "")),
+                            tbl.getValueAt(tbl.getSelectedRow(), 0) + "", null, true, this);
+                    tbl.setModel(controladorPreg.listarPreguntas());
                     break;
                 case 2:
                     ventana = new FrmTema(tbl.getValueAt(tbl.getSelectedRow(), 0) + "", controladorTema.traerTema(tbl.getValueAt(tbl.getSelectedRow(), 0) + ""), null, true, this);
@@ -305,7 +318,17 @@ public class pnlPregUsus extends javax.swing.JPanel {
                     tbl.setModel(Main.controUsuario.listar());
                     break;
                 case 1:
-
+                    String idPregunta = JOptionPane.showInputDialog("Ingrese el numero de la pregunta Que Desea Eliminar");
+                    if (idPregunta != null) {
+                        if (controladorPreg.eliminarPregunta(Integer.parseInt(idPregunta))) {
+                            JOptionPane.showMessageDialog(null, "Pregunta Eliminado");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se encontro la pregunta");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No ha ingresado nada");
+                    }
+                    tbl.setModel(controladorPreg.listarPreguntas());
                     break;
                 case 2:
                     String idTema = JOptionPane.showInputDialog("Ingrese el numero del tema que desea Eliminar");
@@ -328,18 +351,35 @@ public class pnlPregUsus extends javax.swing.JPanel {
                     String cedula = tbl.getValueAt(tbl.getSelectedRow(), 0) + "";
                     desicion = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el usuario con la cedula: " + cedula);
                     if (desicion == 0) {
-                        Main.controUsuario.solicitarEliminar(cedula);
+                        if (Main.controUsuario.solicitarEliminar(cedula)) {
+                            JOptionPane.showMessageDialog(null, "Usuario Eliminado");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se encontro el usuario");
+                        }
                         tbl.setModel(Main.controUsuario.listar());
                     }
                     break;
                 case 1:
-
+                    String idPregunta = tbl.getValueAt(tbl.getSelectedRow(), 0) + "";
+                    desicion = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar la pregunta numero: " + idPregunta);
+                    if (desicion == 0) {
+                        if (controladorPreg.eliminarPregunta(Integer.parseInt(idPregunta))) {
+                            JOptionPane.showMessageDialog(null, "Pregunta Eliminado");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se encontro la pregunta");
+                        }
+                        tbl.setModel(controladorPreg.listarPreguntas());
+                    }
                     break;
                 case 2:
                     String idTema = tbl.getValueAt(tbl.getSelectedRow(), 0) + "";
                     desicion = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el tema numero: " + idTema);
                     if (desicion == 0) {
-                        controladorTema.eliminar(idTema);
+                        if (controladorTema.eliminar(idTema)) {
+                            JOptionPane.showMessageDialog(null, "Tema Eliminado");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se encontro el tema");
+                        }
                         tbl.setModel(controladorTema.listar());
                     }
                     break;

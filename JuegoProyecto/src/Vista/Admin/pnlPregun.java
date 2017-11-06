@@ -8,9 +8,16 @@ package Vista.Admin;
 import Controlador.CtlPregunta;
 import Controlador.CtlTema;
 import Controlador.Main;
+import Modelo.Opcion;
 import Modelo.Pregunta;
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -23,17 +30,16 @@ public class pnlPregun extends javax.swing.JPanel {
     private final JDialog padre;
     private int tipoPreg;
     private Pregunta preg;
+    private ArrayList<Opcion> opciones;
+    private int idPreg;
     private final pnlPregUsus abuelo;
 
     /**
      * Creates new form pnlPregun
      */
-    public pnlPregun(JDialog padre,JPanel abuelo) {
+    public pnlPregun(JDialog padre, JPanel abuelo) {
         initComponents();
-        controladorPregunta = new CtlPregunta();
-        controladorTema = new CtlTema();
-        cbTema.setModel(controladorTema.listarCB());
-        cbTipoPreg.setModel(controladorPregunta.listarTipoPregunta());
+        iniciar();
         this.padre = padre;
         lblTema.setVisible(false);
         cbTema.setVisible(false);
@@ -43,7 +49,21 @@ public class pnlPregun extends javax.swing.JPanel {
         opcionesVisibles(false);
         tipoPreg = cbTipoPreg.getSelectedIndex();
         padre.setSize(430, 140);
-        this.abuelo = (pnlPregUsus)abuelo;
+        this.abuelo = (pnlPregUsus) abuelo;
+    }
+
+    public pnlPregun(Pregunta pregunta, String idPreg, JDialog padre, JPanel abuelo) {
+        initComponents();
+        this.padre = padre;
+        this.abuelo = (pnlPregUsus) abuelo;
+        iniciar();
+        padre.setSize(1008, 670);
+        this.preg = pregunta;
+        opciones = controladorPregunta.getOpciones(Integer.parseInt(idPreg));
+        this.idPreg = Integer.parseInt(idPreg);
+        cargarInfo();
+        validarEnunciado();
+        btnTerminar.setText("MODIFICAR");
     }
 
     /**
@@ -55,6 +75,7 @@ public class pnlPregun extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupo = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         pnlCB = new javax.swing.JPanel();
         lblTP = new javax.swing.JLabel();
@@ -153,6 +174,7 @@ public class pnlPregun extends javax.swing.JPanel {
 
         txtEnunciado.setColumns(20);
         txtEnunciado.setRows(5);
+        txtEnunciado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtEnunciado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtEnunciadoKeyReleased(evt);
@@ -164,6 +186,17 @@ public class pnlPregun extends javax.swing.JPanel {
 
         txtA.setColumns(20);
         txtA.setRows(5);
+        txtA.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtA.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtAFocusGained(evt);
+            }
+        });
+        txtA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(txtA);
 
         rbtnA.setBackground(new java.awt.Color(0, 0, 29));
@@ -207,6 +240,17 @@ public class pnlPregun extends javax.swing.JPanel {
 
         txtB.setColumns(20);
         txtB.setRows(5);
+        txtB.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtB.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBFocusGained(evt);
+            }
+        });
+        txtB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtBMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(txtB);
 
         rbtnB.setBackground(new java.awt.Color(0, 0, 29));
@@ -250,6 +294,17 @@ public class pnlPregun extends javax.swing.JPanel {
 
         txtC.setColumns(20);
         txtC.setRows(5);
+        txtC.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCFocusGained(evt);
+            }
+        });
+        txtC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(txtC);
 
         rbtnC.setBackground(new java.awt.Color(0, 0, 29));
@@ -293,6 +348,17 @@ public class pnlPregun extends javax.swing.JPanel {
 
         txtD.setColumns(20);
         txtD.setRows(5);
+        txtD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtD.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDFocusGained(evt);
+            }
+        });
+        txtD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(txtD);
 
         rbtnD.setBackground(new java.awt.Color(0, 0, 29));
@@ -432,6 +498,10 @@ public class pnlPregun extends javax.swing.JPanel {
             if (validarTema()) {
                 validarEnunciado();
             }
+            if (preg != null) {
+                padre.setSize(1008, 650);
+                padre.setLocationRelativeTo(null);
+            }
         } else {
             lblTema.setVisible(false);
             cbTema.setVisible(false);
@@ -448,33 +518,68 @@ public class pnlPregun extends javax.swing.JPanel {
     private void cbTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTemaActionPerformed
         // TODO add your handling code here:
         if (validarTema()) {
-            validarEnunciado();
+            if (validarEnunciado()) {
+                if (preg != null) {
+                    padre.setSize(1008, 650);
+                    padre.setLocationRelativeTo(null);
+                }
+            }
         }
     }//GEN-LAST:event_cbTemaActionPerformed
 
     private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
         // TODO add your handling code here:
-        Main.mensaje(300, 30, "CREANDO PREGUNTA...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
-        boolean bool = controladorPregunta.registrarPregunta(
-                Integer.parseInt(controladorPregunta.traerDato("tema", "idTema", "nombre", cbTema.getSelectedItem().toString()))
-                , tipoPreg, txtEnunciado.getText().trim());
-        if (chA.isVisible()) {
-            controladorPregunta.añadirOpcion((chA.isSelected() ? 1 : 0), txtA.getText());
-            controladorPregunta.añadirOpcion((chB.isSelected() ? 1 : 0), txtB.getText());
-            controladorPregunta.añadirOpcion((chC.isSelected() ? 1 : 0), txtC.getText());
-            controladorPregunta.añadirOpcion((chD.isSelected() ? 1 : 0), txtD.getText());
-        }else{
-            controladorPregunta.añadirOpcion((rbtnA.isSelected() ? 1 : 0), txtA.getText());
-            controladorPregunta.añadirOpcion((rbtnB.isSelected() ? 1 : 0), txtB.getText());
-            controladorPregunta.añadirOpcion((rbtnC.isSelected() ? 1 : 0), txtC.getText());
-            controladorPregunta.añadirOpcion((rbtnD.isSelected() ? 1 : 0), txtD.getText());
-        }
-        if (bool) {
-            Main.mensaje(300, 30, "PREGUNTA CREADA!!!...", 3, "/Recursos/Imagenes/Cuenta.png");
-            padre.dispose();
-            abuelo.listar();
-        }else{
-            Main.mensaje(300, 30, "NO SE HA PODIDO CREAR LA PREGUNTA!!!...", 3, "/Recursos/Imagenes/cancel.png");
+        if (validarCampos()) {
+            if (preg == null) {
+                Main.mensaje(300, 30, "CREANDO PREGUNTA...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+                boolean bool = controladorPregunta.registrarPregunta(
+                        Integer.parseInt(controladorPregunta.traerDato("tema", "idTema", "nombre", cbTema.getSelectedItem().toString())),
+                        tipoPreg, txtEnunciado.getText().trim());
+                if (chA.isVisible()) {
+                    controladorPregunta.añadirOpcion((chA.isSelected() ? 1 : 0), txtA.getText());
+                    controladorPregunta.añadirOpcion((chB.isSelected() ? 1 : 0), txtB.getText());
+                    controladorPregunta.añadirOpcion((chC.isSelected() ? 1 : 0), txtC.getText());
+                    controladorPregunta.añadirOpcion((chD.isSelected() ? 1 : 0), txtD.getText());
+                } else {
+                    controladorPregunta.añadirOpcion((rbtnA.isSelected() ? 1 : 0), txtA.getText());
+                    controladorPregunta.añadirOpcion((rbtnB.isSelected() ? 1 : 0), txtB.getText());
+                    controladorPregunta.añadirOpcion((rbtnC.isSelected() ? 1 : 0), txtC.getText());
+                    controladorPregunta.añadirOpcion((rbtnD.isSelected() ? 1 : 0), txtD.getText());
+                }
+                if (bool) {
+                    Main.mensaje(300, 30, "PREGUNTA CREADA!!!...", 3, "/Recursos/Imagenes/Cuenta.png");
+                    padre.dispose();
+                    abuelo.listar();
+                } else {
+                    Main.mensaje(300, 30, "NO SE HA PODIDO CREAR LA PREGUNTA!!!...", 3, "/Recursos/Imagenes/cancel.png");
+                }
+            } else {
+                Main.mensaje(300, 30, "MODIFICANDO PREGUNTA...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+                boolean bool = controladorPregunta.modificarPregunta(idPreg + "",
+                        Integer.parseInt(controladorPregunta.traerDato("tema", "idTema", "nombre", cbTema.getSelectedItem().toString())),
+                        tipoPreg, txtEnunciado.getText());
+
+                int[] idOpciones = controladorPregunta.traerOpciones(idPreg);
+
+                if (chA.isVisible()) {
+                    controladorPregunta.modificarOpcion(idOpciones[0] + "", idPreg + "", (chA.isSelected() ? 1 : 0), txtA.getText());
+                    controladorPregunta.modificarOpcion(idOpciones[1] + "", idPreg + "", (chB.isSelected() ? 1 : 0), txtB.getText());
+                    controladorPregunta.modificarOpcion(idOpciones[2] + "", idPreg + "", (chC.isSelected() ? 1 : 0), txtC.getText());
+                    controladorPregunta.modificarOpcion(idOpciones[3] + "", idPreg + "", (chD.isSelected() ? 1 : 0), txtD.getText());
+                } else {
+                    controladorPregunta.modificarOpcion(idOpciones[0] + "", idPreg + "", (rbtnA.isSelected() ? 1 : 0), txtA.getText());
+                    controladorPregunta.modificarOpcion(idOpciones[1] + "", idPreg + "", (rbtnB.isSelected() ? 1 : 0), txtB.getText());
+                    controladorPregunta.modificarOpcion(idOpciones[2] + "", idPreg + "", (rbtnC.isSelected() ? 1 : 0), txtC.getText());
+                    controladorPregunta.modificarOpcion(idOpciones[3] + "", idPreg + "", (rbtnD.isSelected() ? 1 : 0), txtD.getText());
+                }
+                if (bool) {
+                    Main.mensaje(300, 30, "PREGUNTA MODIFICADA!!!...", 3, "/Recursos/Imagenes/Cuenta.png");
+                    padre.dispose();
+                    abuelo.listar();
+                } else {
+                    Main.mensaje(300, 30, "NO SE HA PODIDO MODIFICAR LA PREGUNTA!!!...", 3, "/Recursos/Imagenes/cancel.png");
+                }
+            }
         }
     }//GEN-LAST:event_btnTerminarActionPerformed
 
@@ -482,6 +587,70 @@ public class pnlPregun extends javax.swing.JPanel {
         // TODO add your handling code here:
         validarEnunciado();
     }//GEN-LAST:event_txtEnunciadoKeyReleased
+
+    private void txtAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAMouseClicked
+        // TODO add your handling code here:
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            if (tipoPreg == 2) {
+                chA.setSelected(!chA.isSelected());
+            } else if (tipoPreg == 1) {
+                rbtnA.setSelected(!rbtnA.isSelected());
+            }
+        }
+    }//GEN-LAST:event_txtAMouseClicked
+
+    private void txtBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBMouseClicked
+        // TODO add your handling code here:
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            if (tipoPreg == 2) {
+                chB.setSelected(!chB.isSelected());
+            } else if (tipoPreg == 1) {
+                rbtnB.setSelected(!rbtnB.isSelected());
+            }
+        }
+    }//GEN-LAST:event_txtBMouseClicked
+
+    private void txtCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCMouseClicked
+        // TODO add your handling code here:
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            if (tipoPreg == 2) {
+                chC.setSelected(!chC.isSelected());
+            } else if (tipoPreg == 1) {
+                rbtnC.setSelected(!rbtnC.isSelected());
+            }
+        }
+    }//GEN-LAST:event_txtCMouseClicked
+
+    private void txtDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDMouseClicked
+        // TODO add your handling code here:
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            if (tipoPreg == 2) {
+                chD.setSelected(!chD.isSelected());
+            } else if (tipoPreg == 1) {
+                rbtnD.setSelected(!rbtnD.isSelected());
+            }
+        }
+    }//GEN-LAST:event_txtDMouseClicked
+
+    private void txtAFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAFocusGained
+        // TODO add your handling code here:
+        txtA.setBorder(new EtchedBorder(1));
+    }//GEN-LAST:event_txtAFocusGained
+
+    private void txtBFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBFocusGained
+        // TODO add your handling code here:
+        txtB.setBorder(new EtchedBorder(1));
+    }//GEN-LAST:event_txtBFocusGained
+
+    private void txtCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCFocusGained
+        // TODO add your handling code here:
+        txtC.setBorder(new EtchedBorder(1));
+    }//GEN-LAST:event_txtCFocusGained
+
+    private void txtDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDFocusGained
+        // TODO add your handling code here:
+        txtD.setBorder(new EtchedBorder(1));
+    }//GEN-LAST:event_txtDFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -492,6 +661,7 @@ public class pnlPregun extends javax.swing.JPanel {
     private javax.swing.JCheckBox chB;
     private javax.swing.JCheckBox chC;
     private javax.swing.JCheckBox chD;
+    private javax.swing.ButtonGroup grupo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -522,23 +692,118 @@ public class pnlPregun extends javax.swing.JPanel {
     private javax.swing.JTextArea txtEnunciado;
     // End of variables declaration//GEN-END:variables
 
-    private void validarEnunciado() {
+    private void iniciar() {
+        controladorPregunta = new CtlPregunta();
+        controladorTema = new CtlTema();
+        cbTema.setModel(controladorTema.listarCB());
+        cbTipoPreg.setModel(controladorPregunta.listarTipoPregunta());
+        añadirGrupoBotones();
+        txtEnunciado.setLineWrap(true);
+        txtA.setLineWrap(true);
+        txtB.setLineWrap(true);
+        txtC.setLineWrap(true);
+        txtD.setLineWrap(true);
+    }
+
+    private boolean validarCampos() {
+        boolean bool = true;
+        if (txtA.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No ha introducido un enunciado valido para la opcion A");
+            txtA.setBorder(new LineBorder(Color.red, 2));
+            bool = false;
+        }
+        if (txtB.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No ha introducido un enunciado valido para la opcion B");
+            txtB.setBorder(new LineBorder(Color.red, 2));
+            bool = false;
+        }
+        if (txtC.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No ha introducido un enunciado valido para la opcion C");
+            txtC.setBorder(new LineBorder(Color.red, 2));
+            bool = false;
+        }
+        if (txtD.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No ha introducido un enunciado valido para la opcion D");
+            txtD.setBorder(new LineBorder(Color.red, 2));
+            bool = false;
+        }
+        if (tipoPreg == 1) {
+            if (!rbtnA.isSelected() && !rbtnB.isSelected() && !rbtnC.isSelected() && !rbtnD.isSelected()) {
+                JOptionPane.showMessageDialog(null, "<html>Debe seleccionar la opción correcta dando clic derecho en cualquier opción<br>"
+                        + "o dando clic en los ciculitos que esta al lado izquierdo de cada caja de texto</html>");
+                bool = false;
+            }
+        } else if (tipoPreg == 2) {
+            if (!chA.isSelected() && !chB.isSelected() && !chC.isSelected() && !chD.isSelected()) {
+                JOptionPane.showMessageDialog(null, "<html>Debe seleccionar minimo una opción correcta dando clic derecho en cualquier opción"
+                        + "<br>o seleccionando en cualquier check(cuadrito) que estan al aldo izquierdo de cada caja de texto.</html>");
+                bool = false;
+            }
+        }
+        return bool;
+    }
+
+    private void cargarInfo() {
+        cbTipoPreg.setSelectedIndex(preg.getIdTipoPregunta());
+        for (int i = 0; i < cbTema.getItemCount(); i++) {
+            if (cbTema.getItemAt(i).equals(controladorPregunta.traerDato("tema", "nombre", "idTema", preg.getIdTema() + ""))) {
+                cbTema.setSelectedIndex(i);
+                break;
+            }
+        }
+        txtEnunciado.setText(preg.getEnunciado());
+        txtA.setText(opciones.get(0).getEnunciado());
+        txtB.setText(opciones.get(1).getEnunciado());
+        txtC.setText(opciones.get(2).getEnunciado());
+        txtD.setText(opciones.get(3).getEnunciado());
+        boolean[] bool = new boolean[4];
+        for (int i = 0; i < opciones.size(); i++) {
+            bool[i] = opciones.get(i).getCorrecta() != 0;
+        }
+        if (preg.getIdTipoPregunta() == 1) {
+            rbtnA.setSelected(bool[0]);
+            rbtnB.setSelected(bool[1]);
+            rbtnC.setSelected(bool[2]);
+            rbtnD.setSelected(bool[3]);
+            chA.setVisible(false);
+            chB.setVisible(false);
+            chC.setVisible(false);
+            chD.setVisible(false);
+        } else {
+            chA.setSelected(bool[0]);
+            chB.setSelected(bool[1]);
+            chC.setSelected(bool[2]);
+            chD.setSelected(bool[3]);
+            rbtnA.setVisible(false);
+            rbtnB.setVisible(false);
+            rbtnC.setVisible(false);
+            rbtnD.setVisible(false);
+        }
+    }
+
+    private boolean validarEnunciado() {
+        boolean bool;
         if (txtEnunciado.getText().isEmpty()) {
             opcionesVisibles(false);
             validarTema();
+            bool = false;
         } else {
             opcionesVisibles(true);
+            bool = true;
         }
         padre.setLocationRelativeTo(null);
         actualizarOpciones();
+        return bool;
     }
-    private void actualizarOpciones(){
+
+    private void actualizarOpciones() {
         pnlA.updateUI();
         pnlB.updateUI();
         pnlC.updateUI();
         pnlD.updateUI();
         pnlPrengunta.updateUI();
     }
+
     private void opcionesVisibles(boolean bool) {
         lblA.setVisible(bool);
         lblB.setVisible(bool);
@@ -554,8 +819,12 @@ public class pnlPregun extends javax.swing.JPanel {
         pnlC.setVisible(bool);
         pnlD.setVisible(bool);
         btnTerminar.setVisible(bool);
-        if (bool) {
-            padre.setSize(1008, 670);
+        if (bool && preg == null) {
+            padre.setSize(1008, 650);
+        } else if (bool && chA.isVisible()) {
+            padre.setSize(1008, 650);
+        } else if (bool && rbtnA.isVisible()) {
+            padre.setSize(1008, 650);
         }
     }
 
@@ -610,5 +879,12 @@ public class pnlPregun extends javax.swing.JPanel {
         }
         padre.setLocationRelativeTo(null);
         return bool;
+    }
+
+    private void añadirGrupoBotones() {
+        grupo.add(rbtnA);
+        grupo.add(rbtnB);
+        grupo.add(rbtnC);
+        grupo.add(rbtnD);
     }
 }

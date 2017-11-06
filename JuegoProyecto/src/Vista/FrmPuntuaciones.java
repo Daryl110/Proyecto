@@ -161,10 +161,7 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
             padre.setVisible(true);
         } else {
             FrmCrearJuego.ventanaJuego = null;
-            ventanaPrincipal = new FrmPrincipal();
-
-            ventanaPrincipal.setLocationRelativeTo(null);
-            ventanaPrincipal.setVisible(true);
+            Main.abrirFrmPrincipal();
         }
     }//GEN-LAST:event_btnVolverInicioActionPerformed
 
