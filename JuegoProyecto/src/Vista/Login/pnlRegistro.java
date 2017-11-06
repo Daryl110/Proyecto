@@ -8,6 +8,7 @@ package Vista.Login;
 import Controlador.Main;
 import static Controlador.Main.controUsuario;
 import Modelo.Usuario;
+import Vista.Admin.pnlPregUsus;
 import Vista.FrmCrearJuego;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -15,6 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.border.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
 
 /**
  *
@@ -23,6 +26,9 @@ import java.util.regex.Pattern;
 public class pnlRegistro extends javax.swing.JPanel {
 
     private Usuario usu;
+    private boolean modificador = false;
+    private JDialog padre;
+    private pnlPregUsus abuelo;
 
     /**
      * Creates new form pnlRegistro
@@ -33,6 +39,39 @@ public class pnlRegistro extends javax.swing.JPanel {
         cbPreguntaS.setModel(Main.controUsuario.solicitarListarEnCB("preguntaUsuario", "enunciado"));
         if (FrmCrearJuego.ventanaJuego != null) {
             FrmCrearJuego.ventanaJuego.setSize(350, FrmCrearJuego.ventanaJuego.getHeight());
+        }
+    }
+
+    public pnlRegistro(boolean modificador, JDialog padre, JPanel abuelo) {
+        initComponents();
+        ocultarAsteriscos();
+        cbPreguntaS.setModel(Main.controUsuario.solicitarListarEnCB("preguntaUsuario", "enunciado"));
+        if (FrmCrearJuego.ventanaJuego != null) {
+            FrmCrearJuego.ventanaJuego.setSize(350, FrmCrearJuego.ventanaJuego.getHeight());
+        }
+        if (modificador) {
+            lblIniciarSesion.setVisible(!modificador);
+            this.modificador = modificador;
+            this.padre = padre;
+            this.abuelo = (pnlPregUsus) abuelo;
+        }
+    }
+
+    public pnlRegistro(Usuario usu, boolean modificador, JDialog padre, JPanel abuelo) {
+        initComponents();
+        ocultarAsteriscos();
+        cbPreguntaS.setModel(Main.controUsuario.solicitarListarEnCB("preguntaUsuario", "enunciado"));
+        if (FrmCrearJuego.ventanaJuego != null) {
+            FrmCrearJuego.ventanaJuego.setSize(350, FrmCrearJuego.ventanaJuego.getHeight());
+        }
+        if (modificador) {
+            lblIniciarSesion.setVisible(!modificador);
+            this.modificador = modificador;
+            this.padre = padre;
+            this.abuelo = (pnlPregUsus) abuelo;
+            lblIniciarSesion.setVisible(false);
+            btnCrearUsu.setText("Modificar Cuenta");
+            cambiarCampos(usu);
         }
     }
 
@@ -442,7 +481,7 @@ public class pnlRegistro extends javax.swing.JPanel {
                 if (validarCedula()) {
                     if (usu == null) {
                         //Accion De Crear Usuario
-                        Main.mensaje(300, 30, "CREANDO CUENTA....", 3, "/Recursos/spinner-of-dots.png");
+                        Main.mensaje(300, 30, "CREANDO CUENTA....", 3, "/Recursos/Imagenes/spinner-of-dots.png");
                         if (!controUsuario.validarCampoUsuario(txtCedula.getText().trim(), "cedula", "usuario")) {
                             if (!controUsuario.validarCampoUsuario(txtNombreUsu.getText().trim(), "nombreUsu", "usuario")) {
                                 if (controUsuario.solicitudRegistro(Integer.parseInt(txtCedula.getText().trim()),
@@ -450,20 +489,29 @@ public class pnlRegistro extends javax.swing.JPanel {
                                         validarEspaciosNoRequeridos(txtNombre.getText().trim()), txtNombreUsu.getText().trim(),
                                         txtContrasena.getText().trim(), validarEspaciosNoRequeridos(txtCorreo.getText().trim()),
                                         validarEspaciosNoRequeridos(txtTelefono.getText().trim()), txtRespuesta.getText().trim())) {
-                                    Main.mensaje(300, 30, "!SE HA CREADO LA CUENTA EXITOSAMENTE!", 2, "/Recursos/Cuenta.png");
-                                    abrirIniciarSesion();
+                                    Main.mensaje(300, 30, "!SE HA CREADO LA CUENTA EXITOSAMENTE!", 2, "/Recursos/Imagenes/Cuenta.png");
+                                    if (modificador) {
+                                        padre.dispose();
+                                        abuelo.listar();
+                                    } else {
+                                        abrirIniciarSesion();
+                                    }
                                 }
                             }
                         }
                     } else {
                         //Modificar
-                        Main.mensaje(300, 30, "MODIFICANDO CUENTA....", 3, "/Recursos/spinner-of-dots.png");
+                        Main.mensaje(300, 30, "MODIFICANDO CUENTA....", 3, "/Recursos/Imagenes/spinner-of-dots.png");
                         if (controUsuario.solicitudModificar(Integer.parseInt(txtCedula.getText().trim()),
                                 cbPreguntaS.getSelectedIndex(), Integer.parseInt(spnSemestre.getValue() + ""),
                                 validarEspaciosNoRequeridos(txtNombre.getText().trim()), txtNombreUsu.getText().trim(),
                                 txtContrasena.getText().trim(), validarEspaciosNoRequeridos(txtCorreo.getText().trim()),
                                 validarEspaciosNoRequeridos(txtTelefono.getText().trim()), txtRespuesta.getText().trim())) {
-                            Main.mensaje(300, 30, "!SE HA MODIFICADO LA CUENTA EXITOSAMENTE!", 2, "/Recursos/Cuenta.png");
+                            Main.mensaje(300, 30, "!SE HA MODIFICADO LA CUENTA EXITOSAMENTE!", 2, "/Recursos/Imagenes/Cuenta.png");
+                            if (modificador) {
+                                padre.dispose();
+                                abuelo.listar();
+                            }
                         }
                     }
                 }
