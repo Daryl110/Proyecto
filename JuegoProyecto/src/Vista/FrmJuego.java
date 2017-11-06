@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
@@ -56,7 +57,6 @@ public class FrmJuego extends javax.swing.JFrame {
         controladorJuego = new CtlJuego();
         cargarPreguntas(0);
         botonesVisualizar(false);
-
     }
 
     public FrmJuego(String idJuego, int cedula, int participantes, JFrame padre) {
@@ -548,6 +548,11 @@ public class FrmJuego extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         this.setExtendedState(MAXIMIZED_BOTH);
+        if (preguntas.isEmpty()) {
+            this.dispose();
+            controladorJuego.eliminarUltimoJuego();
+            Main.abrirFrmPrincipal();
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
@@ -628,7 +633,6 @@ public class FrmJuego extends javax.swing.JFrame {
             cambiarBordeButton(btn7);
             cargarPanel(7);
             botonesVisualizar(true);
-            return;
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -695,7 +699,6 @@ public class FrmJuego extends javax.swing.JFrame {
             cambiarBordeButton(btn9);
             cargarPanel(9);
             botonesVisualizar(true);
-            return;
         }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
@@ -778,19 +781,29 @@ public class FrmJuego extends javax.swing.JFrame {
     }
 
     private void cargarPreguntas(int contador) {
-        //Hay q mejorar este metodo para no cargar preguntas con id eliminado
-        if (contador < 10) {
-            int numero = (int) (Math.random() * controladorPreg.getUltimoId()) + 1;
-            if (validarIgualdad(numero)) {
-                Pregunta preg = controladorPreg.traerPregunta(numero);
-                if (preg != null) {
-                    preguntas.add(new pnlPregunta(preg, controladorPreg.getOpciones(numero)));
-                    idPreguntas[contador] = numero;
-                    cargarPreguntas(contador + 1);
+        if (controladorPreg.getNumeroRegistros() >= 10) {
+            if (contador < 10) {
+                int numero = (int) (Math.random() * controladorPreg.getUltimoId()) + 1;
+                try {
+                    if (validarIgualdad(numero)) {
+                        Pregunta preg = controladorPreg.traerPregunta(numero);
+                        if (preg != null) {
+                            preguntas.add(new pnlPregunta(preg, controladorPreg.getOpciones(numero)));
+                            idPreguntas[contador] = numero;
+                            cargarPreguntas(contador + 1);
+                        } else {
+                            cargarPreguntas(contador);
+                        }
+                    } else {
+                        cargarPreguntas(contador);
+                    }
+                } catch (NullPointerException e) {
+                    cargarPreguntas(contador);
                 }
-            } else {
-                cargarPreguntas(contador);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay suficientes preguntas para comenzar un juego desente");
+            Main.mensaje(300, 30, "Volviendo a inicio...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         }
     }
 

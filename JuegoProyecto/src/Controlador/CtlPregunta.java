@@ -74,7 +74,10 @@ public class CtlPregunta {
         return model;
     }
 
-    public Pregunta traerPregunta(int id) {
+    public Pregunta traerPregunta(int id)throws NullPointerException{
+        if (!dao.validarCampo(id+"", "idPregunta", "pregunta")) {
+            return null;
+        }
         return (Pregunta) controladorDAO.sqlToObject("pregunta", "idPregunta", id + "", new Pregunta(0, "", 0));
     }
 
