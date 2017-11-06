@@ -9,6 +9,11 @@ import Mensaje.MesajeDeTiempo;
 import Modelo.Conexion;
 import Vista.FrmPrincipal;
 import java.applet.AudioClip;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 /**
  *
@@ -16,7 +21,7 @@ import java.applet.AudioClip;
  */
 public class Main {
 
-    public static FrmPrincipal ventanaPrincipal;
+    public static FrmPrincipal ventanaPrincipal = new FrmPrincipal();
     public static Conexion conec = new Conexion("juego", "mariadb", "//localhost:3306/");
     public static CtlUsuario controUsuario = new CtlUsuario();
 
@@ -45,12 +50,11 @@ public class Main {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             ventanaPrincipal = new FrmPrincipal();
-            
-            
+
             ventanaPrincipal.setLocationRelativeTo(null);
             ventanaPrincipal.setVisible(true);
         });
-
+//            musica(ventanaPrincipal);
     }
 
     //Metodo Para Llamar a Mensaje De Tiempo
@@ -66,5 +70,25 @@ public class Main {
         ventanaPrincipal.setVisible(true);
     }
 
+    public static void musica(FrmPrincipal ventana) {
+        if (ventana.isEnabled()) {
+            try {
+                FileInputStream fis;
+                Player player;
+                fis = new FileInputStream("C:\\Users\\Nicolas Davila\\Documents\\GitHub\\Proyecto\\JuegoProyecto\\src\\Recursos\\Sonidos\\Música de League of Legends Bit Rush.mp3");
+                BufferedInputStream bis = new BufferedInputStream(fis);
+                player = new Player(bis);
+                player.play();
+            } catch (JavaLayerException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            musica(ventana);
+        } else {
+            return;
+        }
+
+    }
 
 }

@@ -42,6 +42,22 @@ public class pnlRegistro extends javax.swing.JPanel {
         }
     }
 
+    public pnlRegistro(boolean mostrar) {
+        initComponents();
+        ocultarAsteriscos();
+        lblIniciarSesion.setVisible(mostrar);
+        lblIniciarSesion.setEnabled(mostrar);
+        txtCedula.setEditable(mostrar);
+        txtContrasena.setEditable(mostrar);
+        txtCorreo.setEditable(mostrar);
+        txtNombre.setEditable(mostrar);
+        txtNombreUsu.setEditable(mostrar);
+        txtRespuesta.setEditable(mostrar);
+        txtTelefono.setEditable(mostrar);
+        spnSemestre.setEnabled(mostrar);
+        
+    }
+
     public pnlRegistro(boolean modificador, JDialog padre, JPanel abuelo) {
         initComponents();
         ocultarAsteriscos();
@@ -126,14 +142,14 @@ public class pnlRegistro extends javax.swing.JPanel {
         lblIniciarSesion.setForeground(new java.awt.Color(51, 153, 255));
         lblIniciarSesion.setText("Iniciar Sesión");
         lblIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cambiarColor1(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cambiarAIniciarSesion(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 cambiarColor(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cambiarColor1(evt);
             }
         });
         add(lblIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 541, -1, -1));
@@ -163,6 +179,11 @@ public class pnlRegistro extends javax.swing.JPanel {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 ponerCedula(evt);
+            }
+        });
+        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaActionPerformed(evt);
             }
         });
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -363,8 +384,9 @@ public class pnlRegistro extends javax.swing.JPanel {
 
     private void borrarCedula(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_borrarCedula
         // TODO add your handling code here:
-        if (txtCedula.getText().trim().isEmpty() || txtCedula.getText().trim().equalsIgnoreCase("cedula")) {
+        if (txtCedula.getText().trim().isEmpty() || txtCedula.getText().trim().equalsIgnoreCase("Cedula")) {
             Main.ventanaPrincipal.vaciarCampo("Cedula", txtCedula, Color.WHITE);
+<<<<<<< HEAD
             if (!txtCedula.getText().equalsIgnoreCase("cedula") && !txtCedula.getText().equalsIgnoreCase("")) {
                 if (validarCedula()) {
                     if (txtCedula.getText().isEmpty() || txtCedula.getText().equalsIgnoreCase("cedula")) {
@@ -373,6 +395,15 @@ public class pnlRegistro extends javax.swing.JPanel {
                         EtchedBorder borde = new EtchedBorder(1);
                         txtCedula.setBorder(borde);
                     }
+=======
+            txtCedula.setText("");
+            if (validarCedula()) {
+                if (txtCedula.getText().isEmpty() || txtCedula.getText().equalsIgnoreCase("Cedula")) {
+                    Main.ventanaPrincipal.vaciarCampo("Cedula", txtCedula, Color.WHITE);
+                } else {
+                    EtchedBorder borde = new EtchedBorder(1);
+                    txtCedula.setBorder(borde);
+>>>>>>> f7f2b25c9ad1d1f8bbe7884319b0ff5236d401e3
                 }
             }
             lblCedula.setVisible(false);
@@ -567,6 +598,13 @@ public class pnlRegistro extends javax.swing.JPanel {
         // TODO add your handling code here:
         validarCampo(lblNombreUsuario, txtNombreUsu, "nombreUsu", "El nombre de usuario que ha", "ingresado ya esta registrado.");
     }//GEN-LAST:event_txtNombreUsuKeyReleased
+
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+        if (txtCedula.getText().equals("Cedula")) {
+            txtCedula.setText("");
+        }
+    }//GEN-LAST:event_txtCedulaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
