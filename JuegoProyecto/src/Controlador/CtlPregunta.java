@@ -62,6 +62,11 @@ public class CtlPregunta {
     }
 
     public int[] calificar(ArrayList<int[]> selecciones, ArrayList<ArrayList<Opcion>> opciones) {
+//        for (int i = 0; i < selecciones.size(); i++) {
+//            for (int j = 0; j < selecciones.get(i).length; j++) {
+//                System.out.println(selecciones.get(i)[j]);
+//            }
+//        }
         ArrayList<Boolean> corr = new ArrayList<>();
         int[] arreglo = new int[10];
         int correctas;

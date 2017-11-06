@@ -231,7 +231,7 @@ INSERT INTO opcion VALUE('','Planeación en mejorar el trabajo',0,'19');
 INSERT INTO opcion VALUE('','Marco de referencia para la administración del proyecto ',1,'19');
 INSERT INTO opcion VALUE('','secuencias para cada una de las etapas en las que se dividen los proyectos. ',1,'19');
 
-INSERT INTO pregunta VALUES('','¿Cuáles son estas 3 características de documentar de manera explícita la arquitectura de software?','1','2');
+INSERT INTO pregunta VALUES('','¿Cuáles son las 3 características de documentar de manera explícita la arquitectura de software?','1','2');
 INSERT INTO opcion VALUE('','Comunicación con los participantes',1,'20');
 INSERT INTO opcion VALUE('','análisis del sistema. ',1,'20');
 INSERT INTO opcion VALUE('','reutilización a gran escala.',1,'20');
@@ -275,7 +275,7 @@ INSERT INTO opcion VALUE('','Iniciar partida, Jugar partida, Contar minas.',0,'2
 INSERT INTO opcion VALUE('','Jugador, Minas, Anotaciones',0,'26');
 INSERT INTO opcion VALUE('','Ninguna es un caso de uso.',0,'26');
 
-INSERT INTO pregunta VALUES('','¿Cuáles de las siguientes actividades recomienda el enfoque del RUP?','1','1');
+INSERT INTO pregunta VALUES('','¿Cuál de las siguientes actividades recomienda el enfoque del RUP?','1','1');
 INSERT INTO opcion VALUE('','Desarrollo de software iterativamente, gestión de requisitos, usar arquitectura en componentes, software modelado visualmente, verificar calidad y controlar los cambios del software. ',1,'27');
 INSERT INTO opcion VALUE('','Especificación, diseño, implementación, validación y evolución del software.',0,'27');
 INSERT INTO opcion VALUE('','Análisis y definición de requerimientos, diseño del sistema y software e implementación.',0,'27');
@@ -395,7 +395,7 @@ INSERT INTO opcion VALUE('','Los diagramas de bloque. ',1,'46');
 INSERT INTO opcion VALUE('','La arquitectura en grande.',0,'46');
 INSERT INTO opcion VALUE('','Modelo en cascada',0,'46');
 
-INSERT INTO pregunta VALUES('','¿Cuáles de los siguientes diagramas indicaría la estructura de un software?','1','1');
+INSERT INTO pregunta VALUES('','¿Cuál de los siguientes diagramas indicaría la estructura de un software?','1','1');
 INSERT INTO opcion VALUE('','Diagrama de Clases.',1,'47');
 INSERT INTO opcion VALUE('','Diagrama de Estado.',0,'47');
 INSERT INTO opcion VALUE('','Diagrama de Secuencia.',0,'47');

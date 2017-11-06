@@ -302,24 +302,24 @@ public class pnlPregunta extends javax.swing.JPanel {
     private void ponerOpciones(ArrayList<Opcion> opciones) {
         ArrayList<Opcion> opc = new ArrayList<>();
 
-        int numero = (int) (Math.random() * opciones.size() - 1) + 0;
-        lblA.setText(opciones.get(numero).getEnunciado());
-        opc.add(opciones.get(numero));
-        opciones.remove(numero);
+//        int numero = (int) (Math.random() * opciones.size() - 1) + 0;
+        lblA.setText(opciones.get(0).getEnunciado());
+        opc.add(opciones.get(0));
+//        opciones.remove(0);
 
-        numero = (int) (Math.random() * opciones.size() - 1) + 0;
-        lblB.setText(opciones.get(numero).getEnunciado());
-        opc.add(opciones.get(numero));
-        opciones.remove(numero);
+//        numero = (int) (Math.random() * opciones.size() - 1) + 0;
+        lblB.setText(opciones.get(1).getEnunciado());
+        opc.add(opciones.get(1));
+//        opciones.remove(1);
 
-        numero = (int) (Math.random() * opciones.size() - 1) + 0;
-        lblC.setText(opciones.get(numero).getEnunciado());
-        opc.add(opciones.get(numero));
-        opciones.remove(numero);
+//        numero = (int) (Math.random() * opciones.size() - 1) + 0;
+        lblC.setText(opciones.get(2).getEnunciado());
+        opc.add(opciones.get(2));
+//        opciones.remove(2);
 
-        numero = (int) (Math.random() * opciones.size() - 1) + 0;
-        lblD.setText(opciones.get(numero).getEnunciado());
-        opc.add(opciones.get(numero));
+//        numero = (int) (Math.random() * opciones.size() - 1) + 0;
+        lblD.setText(opciones.get(3).getEnunciado());
+        opc.add(opciones.get(3));
 
         this.opciones = opc;
     }
