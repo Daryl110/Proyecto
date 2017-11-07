@@ -61,7 +61,12 @@ public class FrmUsuario extends javax.swing.JFrame {
         lblGif = new javax.swing.JLabel();
         lblNube = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                cerrarVentana(evt);
+            }
+        });
 
         pnlContenedor.setBackground(new java.awt.Color(0, 0, 29));
         pnlContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -176,15 +181,13 @@ public class FrmUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         visualizar("registro");
         lblEtiqueta.setText("<html>Aqui Puedes modificar tu<br>información personal si no<br>sabes cuales son los campos solo<br>pon el mouse encima</html>");
-
     }//GEN-LAST:event_btnEditarPerfilActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         // TODO add your handling code here:
         lblEtiqueta.setText("  Adios " + usu.getNombreUsu() + "...");
-        Main.mensaje(145, 30, "Cerrando Sesión...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+        Main.mensaje(170, 30, "CERRANDO SESIÓN...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         this.dispose();
-        Main.abrirFrmPrincipal();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnPuntuacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPuntuacionesActionPerformed
@@ -201,6 +204,12 @@ public class FrmUsuario extends javax.swing.JFrame {
         ventanaCrearJuego.setLocationRelativeTo(null);
         ventanaCrearJuego.setVisible(true);
     }//GEN-LAST:event_btnJugarActionPerformed
+
+    private void cerrarVentana(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_cerrarVentana
+        // TODO add your handling code here:
+        Main.mensaje(170, 30, "CERRANDO SESIÓN...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+        cerrar();
+    }//GEN-LAST:event_cerrarVentana
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -234,6 +243,10 @@ public class FrmUsuario extends javax.swing.JFrame {
         } catch (ArrayIndexOutOfBoundsException e) {
 
         }
+    }
+    
+    private void cerrar() {
+        Main.abrirFrmPrincipal();
     }
 
     //Metodo Para Cambiar Cursor

@@ -107,7 +107,7 @@ public class DAO {
         ResultSet resultado = traerColumna(tabla, columna);
         try {
             while (resultado.next()) {
-                if (resultado.getString(columna).equals(igualdad)) {
+                if (resultado.getString(columna).equalsIgnoreCase(igualdad)) {
                     return true;
                 }
             }

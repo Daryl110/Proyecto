@@ -65,9 +65,14 @@ public class FrmCrearJuego extends javax.swing.JFrame {
         lblGif = new javax.swing.JLabel();
         lblNube = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(cancelar());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 29));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         pnlContenedorTotal.setBackground(new java.awt.Color(0, 0, 29));
         pnlContenedorTotal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -180,7 +185,7 @@ public class FrmCrearJuego extends javax.swing.JFrame {
                 }
                 ventanaJuego.setLocationRelativeTo(null);
                 ventanaJuego.setVisible(true);
-                this.dispose();
+                this.setVisible(false);
             } else {
                 Main.mensaje(300, 30, "EL NOMBRE DEL JUEGO NO ESTA DISPONIBLE", 2, "/Recursos/Imagenes/cancel.png");
                 txtNombreJuego.setBorder(new LineBorder(Color.red));
@@ -226,6 +231,11 @@ public class FrmCrearJuego extends javax.swing.JFrame {
         lblNombreJuego.setVisible(false);
     }//GEN-LAST:event_txtNombreJuegoborrarCedula
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        cancelar();
+    }//GEN-LAST:event_formWindowClosed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -241,16 +251,13 @@ public class FrmCrearJuego extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreJuego;
     // End of variables declaration//GEN-END:variables
 
-    private int cancelar() {
-        if (this.isVisible()) {
-            this.dispose();
-            Main.mensaje(115, 30, "Cancelando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
-            if (padre != null) {
-                padre.setVisible(true);
-            } else {
-                Main.abrirFrmPrincipal();
-            }
+    private void cancelar() {
+        this.dispose();
+        Main.mensaje(115, 30, "Cancelando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+        if (padre != null) {
+            padre.setVisible(true);
+        } else {
+            Main.abrirFrmPrincipal();
         }
-        return 3;
     }
 }

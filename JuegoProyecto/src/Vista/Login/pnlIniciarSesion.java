@@ -369,13 +369,11 @@ public class pnlIniciarSesion extends javax.swing.JPanel {
                     }
                 } else {
                     prevenirContrasena();
-
                 }
 
             } else {
                 cambiarNota("La informacion que ha diligenciado", "no es correcta o no existe");
                 notaVisible(true);
-
             }
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
@@ -486,9 +484,9 @@ public class pnlIniciarSesion extends javax.swing.JPanel {
         frame.setLocationRelativeTo(null);
         if (Main.ventanaPrincipal.isVisible()) {
             recordar(chbRecordarme.isSelected());
-            Main.ventanaPrincipal.dispose();
+            Main.ventanaPrincipal.setVisible(false);
         } else {
-            FrmCrearJuego.ventanaJuego.dispose();
+            FrmCrearJuego.ventanaJuego.setVisible(false);
         }
     }
 

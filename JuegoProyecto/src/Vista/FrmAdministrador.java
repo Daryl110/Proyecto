@@ -10,6 +10,9 @@ import Vista.Admin.pnlEstadisticas;
 import Vista.Admin.pnlPregUsus;
 import Vista.Login.pnlRegistro;
 import java.awt.BorderLayout;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -17,8 +20,6 @@ import javax.swing.JPanel;
  * @author Daryl Ospina
  */
 public class FrmAdministrador extends javax.swing.JFrame {
-
-    
 
     public FrmAdministrador() {
         initComponents();
@@ -41,8 +42,13 @@ public class FrmAdministrador extends javax.swing.JFrame {
         pnlContenedor = new javax.swing.JPanel();
         btnUsuarios1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                CerrarVentana(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 29));
 
@@ -175,39 +181,53 @@ public class FrmAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        Main.mensaje(145, 30, "Cerrando Sesión...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         this.dispose();
         Main.abrirFrmPrincipal();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticasActionPerformed
-        // TODO add your handling code here:
-        visualizar("estadisticas", 0);
+        try {
+            // TODO add your handling code here:
+            visualizar("estadisticas", 0);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEstadisticasActionPerformed
 
     private void btnPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreguntasActionPerformed
-        // TODO add your handling code here:
-        visualizar("preguntas", 1);
+        try {
+            // TODO add your handling code here:
+            visualizar("preguntas", 1);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPreguntasActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        // TODO add your handling code here:
-        visualizar("preguntas", 0);
+        try {
+            // TODO add your handling code here:
+            visualizar("preguntas", 0);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnUsuarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarios1ActionPerformed
-        // TODO add your handling code here:
-        visualizar("temas", 2);
+        try {
+            // TODO add your handling code here:
+            visualizar("temas", 2);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUsuarios1ActionPerformed
 
-    public static void main(String[] args) {
-        FrmAdministrador ventanaAdministrador = new FrmAdministrador();
-        ventanaAdministrador.setLocationRelativeTo(null);
-        ventanaAdministrador.setVisible(true);
-    }
+    private void CerrarVentana(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CerrarVentana
+        // TODO add your handling code here:
+        cerrar();
+    }//GEN-LAST:event_CerrarVentana
 
     //Metodo Para Visualizar Paneles
-    public void visualizar(String panel, int index) {
+    public void visualizar(String panel, int index) throws SQLException {
         try {
             pnlContenedor.removeAll();
             pnlContenedor.setLayout(new BorderLayout(5, 5));
@@ -238,4 +258,10 @@ public class FrmAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pnlContenedor;
     // End of variables declaration//GEN-END:variables
+
+    private void cerrar() {
+        this.dispose();
+        Main.mensaje(170, 30, "CERRANDO SESIÓN...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+        Main.abrirFrmPrincipal();
+    }
 }

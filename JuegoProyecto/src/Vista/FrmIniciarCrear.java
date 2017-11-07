@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.Main;
 import Vista.Login.pnlIniciarSesion;
 import Vista.Login.pnlOlvideContraseña;
 import Vista.Login.pnlRegistro;
@@ -52,8 +53,11 @@ public class FrmIniciarCrear extends javax.swing.JFrame {
 
         pnlContenedor = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -90,6 +94,11 @@ public class FrmIniciarCrear extends javax.swing.JFrame {
         // TODO add your handling code here:
         visualizar("inicio");
     }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        cerrar();
+    }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel pnlContenedor;
@@ -143,5 +152,15 @@ public class FrmIniciarCrear extends javax.swing.JFrame {
     //Metodo Para Cambiar Cursor
     public void cambiarCursor(int cursor) {
         this.setCursor(cursor);
+    }
+
+    private void cerrar() {
+        this.dispose();
+        Main.mensaje(115, 30, "Cancelando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+        if (padre != null) {
+            padre.setVisible(true);
+        } else {
+            Main.abrirFrmPrincipal();
+        }
     }
 }

@@ -386,7 +386,7 @@ public class pnlRegistro extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (txtCedula.getText().trim().isEmpty() || txtCedula.getText().trim().equalsIgnoreCase("Cedula")) {
             Main.ventanaPrincipal.vaciarCampo("Cedula", txtCedula, Color.WHITE);
-<<<<<<< HEAD
+            
             if (!txtCedula.getText().equalsIgnoreCase("cedula") && !txtCedula.getText().equalsIgnoreCase("")) {
                 if (validarCedula()) {
                     if (txtCedula.getText().isEmpty() || txtCedula.getText().equalsIgnoreCase("cedula")) {
@@ -395,15 +395,6 @@ public class pnlRegistro extends javax.swing.JPanel {
                         EtchedBorder borde = new EtchedBorder(1);
                         txtCedula.setBorder(borde);
                     }
-=======
-            txtCedula.setText("");
-            if (validarCedula()) {
-                if (txtCedula.getText().isEmpty() || txtCedula.getText().equalsIgnoreCase("Cedula")) {
-                    Main.ventanaPrincipal.vaciarCampo("Cedula", txtCedula, Color.WHITE);
-                } else {
-                    EtchedBorder borde = new EtchedBorder(1);
-                    txtCedula.setBorder(borde);
->>>>>>> f7f2b25c9ad1d1f8bbe7884319b0ff5236d401e3
                 }
             }
             lblCedula.setVisible(false);
@@ -679,6 +670,7 @@ public class pnlRegistro extends javax.swing.JPanel {
         spnSemestre.setValue(usu.getSemestre());
         cbPreguntaS.setSelectedIndex(usu.getPregunta());
         txtRespuesta.setText(usu.getRespuesta());
+        limpiarCampos();
     }
 
     //Abrir Iniciar Sesion
@@ -781,6 +773,12 @@ public class pnlRegistro extends javax.swing.JPanel {
             return !matcher.matches();
         }
         return !true;
+    }
+    
+    private void limpiarCampos(){
+        Main.ventanaPrincipal.vaciarCampo("E-Mail", txtCorreo, Color.LIGHT_GRAY);
+        Main.ventanaPrincipal.vaciarCampo("Telefono", txtTelefono, Color.LIGHT_GRAY);
+        Main.ventanaPrincipal.vaciarCampo("Nombre", txtNombre, Color.LIGHT_GRAY);
     }
 
 }

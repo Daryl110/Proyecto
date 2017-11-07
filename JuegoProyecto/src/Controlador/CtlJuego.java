@@ -34,7 +34,7 @@ public class CtlJuego {
         ResultSet rb = dao.traerListar("resultado");
         try {
             while (rb.next()) {
-                if (rb.getString("cedula").equalsIgnoreCase(cedula) && rb.getString("idJuego").equalsIgnoreCase(idJuego)) {
+                if (rb.getString("cedula").equals(cedula) && rb.getString("idJuego").equals(idJuego)) {
                     return false;
                 }
             }
@@ -192,7 +192,7 @@ public class CtlJuego {
                     lista.get(i).getNombreUsuario()});
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
 

@@ -11,7 +11,6 @@ import Vista.Login.pnlOlvideContraseña;
 import Vista.Login.pnlRegistro;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.net.URL;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -39,7 +38,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     }
 
-        @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -51,8 +50,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnBoton = new javax.swing.JButton();
         lblImagen = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         pnlContenedorLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -138,14 +142,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBotonActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        
-
+        this.setVisible(false);
         Main.mensaje(100, 30, "Cargando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         FrmCrearJuego ventanaCrearJuego = new FrmCrearJuego();
         ventanaCrearJuego.setLocationRelativeTo(null);
         ventanaCrearJuego.setVisible(true);
     }//GEN-LAST:event_btnBotonActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        Main.mensaje(200, 30, "CERRANDO APLICACIÓN...!!!", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+        Main.mensaje(170, 30, "HASTA PRONTO!!!", 3, "/Recursos/Imagenes/Cuenta.png");
+        System.exit(0);
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -216,10 +225,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         }
     }
-    
+
     /**
      * Metodo Para Vaciar Campos
-     * @param texto - sirve para contener o borrar el spam(etiqueta dentro del txt)
+     *
+     * @param texto - sirve para contener o borrar el spam(etiqueta dentro del
+     * txt)
      * @param txt - sirve para saber a que txt se hace referencia
      * @param color - sirve para cambiar el color de letra
      */

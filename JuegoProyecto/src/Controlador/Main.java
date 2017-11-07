@@ -8,7 +8,6 @@ package Controlador;
 import Mensaje.MesajeDeTiempo;
 import Modelo.Conexion;
 import Vista.FrmPrincipal;
-import java.applet.AudioClip;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
