@@ -65,9 +65,14 @@ public class FrmCrearJuego extends javax.swing.JFrame {
         lblGif = new javax.swing.JLabel();
         lblNube = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 29));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         pnlContenedorTotal.setBackground(new java.awt.Color(0, 0, 29));
         pnlContenedorTotal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -161,13 +166,7 @@ public class FrmCrearJuego extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        Main.mensaje(115, 30, "Cancelando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
-        if (padre != null) {
-            padre.setVisible(true);
-        } else {
-            Main.abrirFrmPrincipal();
-        }
+        cancelar();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnIIniciarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIIniciarJuegoActionPerformed
@@ -176,17 +175,17 @@ public class FrmCrearJuego extends javax.swing.JFrame {
             Main.mensaje(150, 30, "Iniciando Partida...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
             SimpleDateFormat d = new SimpleDateFormat("YYYY/MM/d");
             Date date = new Date();
-            if (controJuego.solicitudRegistro(Integer.parseInt(jSpinner1.getValue() + ""), txtNombreJuego.getText().trim(),d.format(date))) {
-                nombreJuego=txtNombreJuego.getText().trim();
+            if (controJuego.solicitudRegistro(Integer.parseInt(jSpinner1.getValue() + ""), txtNombreJuego.getText().trim(), d.format(date))) {
+                nombreJuego = txtNombreJuego.getText().trim();
 
                 if (padre != null) {
-                    ventanaJuego = new FrmIniciarCrear(controJuego.traerIdJuego(txtNombreJuego.getText().trim()),Integer.parseInt(jSpinner1.getValue()+""),padre);
-                }else{
-                    ventanaJuego = new FrmIniciarCrear(controJuego.traerIdJuego(txtNombreJuego.getText().trim()),Integer.parseInt(jSpinner1.getValue()+""));
+                    ventanaJuego = new FrmIniciarCrear(controJuego.traerIdJuego(txtNombreJuego.getText().trim()), Integer.parseInt(jSpinner1.getValue() + ""), padre);
+                } else {
+                    ventanaJuego = new FrmIniciarCrear(controJuego.traerIdJuego(txtNombreJuego.getText().trim()), Integer.parseInt(jSpinner1.getValue() + ""));
                 }
                 ventanaJuego.setLocationRelativeTo(null);
                 ventanaJuego.setVisible(true);
-                this.dispose();
+                this.setVisible(false);
             } else {
                 Main.mensaje(300, 30, "EL NOMBRE DEL JUEGO NO ESTA DISPONIBLE", 2, "/Recursos/Imagenes/cancel.png");
                 txtNombreJuego.setBorder(new LineBorder(Color.red));
@@ -232,6 +231,11 @@ public class FrmCrearJuego extends javax.swing.JFrame {
         lblNombreJuego.setVisible(false);
     }//GEN-LAST:event_txtNombreJuegoborrarCedula
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        cancelar();
+    }//GEN-LAST:event_formWindowClosed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -246,4 +250,14 @@ public class FrmCrearJuego extends javax.swing.JFrame {
     private javax.swing.JPanel pnlContenedorTotal;
     private javax.swing.JTextField txtNombreJuego;
     // End of variables declaration//GEN-END:variables
+
+    private void cancelar() {
+        this.dispose();
+        Main.mensaje(115, 30, "Cancelando...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+        if (padre != null) {
+            padre.setVisible(true);
+        } else {
+            Main.abrirFrmPrincipal();
+        }
+    }
 }

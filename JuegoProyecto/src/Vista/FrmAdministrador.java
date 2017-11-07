@@ -42,8 +42,13 @@ public class FrmAdministrador extends javax.swing.JFrame {
         pnlContenedor = new javax.swing.JPanel();
         btnUsuarios1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                CerrarVentana(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 29));
 
@@ -176,7 +181,6 @@ public class FrmAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        Main.mensaje(145, 30, "Cerrando Sesión...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
         this.dispose();
         Main.abrirFrmPrincipal();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
@@ -193,7 +197,10 @@ public class FrmAdministrador extends javax.swing.JFrame {
     private void btnPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreguntasActionPerformed
         try {
             // TODO add your handling code here:
+<<<<<<< HEAD
 
+=======
+>>>>>>> fd7774a34e87b1050842ab2b7d95a8bb82c2dcbd
             visualizar("preguntas", 1);
         } catch (SQLException ex) {
             Logger.getLogger(FrmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -218,11 +225,10 @@ public class FrmAdministrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUsuarios1ActionPerformed
 
-    public static void main(String[] args) {
-        FrmAdministrador ventanaAdministrador = new FrmAdministrador();
-        ventanaAdministrador.setLocationRelativeTo(null);
-        ventanaAdministrador.setVisible(true);
-    }
+    private void CerrarVentana(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CerrarVentana
+        // TODO add your handling code here:
+        cerrar();
+    }//GEN-LAST:event_CerrarVentana
 
     //Metodo Para Visualizar Paneles
     public void visualizar(String panel, int index) throws SQLException {
@@ -256,4 +262,10 @@ public class FrmAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pnlContenedor;
     // End of variables declaration//GEN-END:variables
+
+    private void cerrar() {
+        this.dispose();
+        Main.mensaje(170, 30, "CERRANDO SESIÓN...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+        Main.abrirFrmPrincipal();
+    }
 }

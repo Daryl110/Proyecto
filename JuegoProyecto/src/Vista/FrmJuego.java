@@ -12,7 +12,6 @@ import Modelo.Opcion;
 import Modelo.Pregunta;
 import static Vista.FrmCrearJuego.ventanaJuego;
 import Vista.Preguntas.pnlPregunta;
-import java.applet.AudioClip;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;

@@ -55,7 +55,12 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
         btnVolverJugar = new javax.swing.JButton();
         btnVolverInicio = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 29));
 
@@ -161,12 +166,16 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
             padre.setVisible(true);
         } else {
             FrmCrearJuego.ventanaJuego = null;
-            ventanaPrincipal = new FrmPrincipal();
-
-            ventanaPrincipal.setLocationRelativeTo(null);
-            ventanaPrincipal.setVisible(true);
+            Main.abrirFrmPrincipal();
         }
     }//GEN-LAST:event_btnVolverInicioActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        Main.mensaje(200, 30, "DIRECCIONANDO A INICIO...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+        Main.mensaje(170, 30, "GRACIAS POR JUGAR...", 3, "/Recursos/Imagenes/spinner-of-dots.png");
+        Main.abrirFrmPrincipal();
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

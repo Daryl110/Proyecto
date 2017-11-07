@@ -51,6 +51,15 @@ public class CtlPregunta {
         return controladorDAO.solicitudRegistro(new Pregunta(idTema, enunciado, idTipoPregunta), "pregunta");
     }
     
+    public boolean modificarPregunta(String idPregunta,int idTema,int idTipoPregunta,String enunciado){
+        Pregunta preg = new Pregunta(idTema, enunciado, idTipoPregunta);
+        return controladorDAO.solicitarModificar(preg, "pregunta", "idPregunta",idPregunta);
+    }
+    
+    public boolean modificarOpcion(String idOpcion,String idPregunta,int correcta,String enunciado){
+        return controladorDAO.solicitarModificar(new Opcion(Integer.parseInt(idPregunta), correcta, enunciado),"opcion", "idOpcion",idOpcion);
+    }
+    
     public DefaultTableModel listarPreguntas(){
         return listarRegistro(dao.traerListar("pregunta"));
     }
@@ -72,6 +81,10 @@ public class CtlPregunta {
         }
 
         return model;
+    }
+    
+    public boolean eliminarPregunta(int idPregunta){
+        return dao.eliminar("pregunta", "idPregunta", idPregunta+"");
     }
 
     public Pregunta traerPregunta(int id)throws NullPointerException{
@@ -96,7 +109,7 @@ public class CtlPregunta {
         return controladorDAO.getNumeroRegistros("pregunta");
     }
 
-    private int[] traerOpciones(int id) {
+    public int[] traerOpciones(int id) {
         int[] opciones = new int[4];
         ResultSet rb = dao.traerBuscar("opcion", "idPregunta", id + "");
 

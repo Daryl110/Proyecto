@@ -28,6 +28,20 @@ public class CtlJuego {
         dao = new DAO();
         controladorDAO = new CtlDAO();
     }
+    
+    public boolean validarJugador(String cedula,String idJuego){
+        ResultSet rb = dao.traerListar("resultado");
+        try {
+            while (rb.next()) {
+                if (rb.getString("cedula").equals(cedula) && rb.getString("idJuego").equals(idJuego)) {
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            return false;
+        }
+        return true;
+    }
 
     public void eliminarUltimoJuego() {
         String ultimoId = controladorDAO.getUltimoId("juego", "idJuego");

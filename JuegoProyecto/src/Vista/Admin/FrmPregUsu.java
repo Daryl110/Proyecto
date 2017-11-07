@@ -5,6 +5,7 @@
  */
 package Vista.Admin;
 
+import Modelo.Pregunta;
 import Modelo.Usuario;
 import Vista.Login.pnlRegistro;
 import java.awt.BorderLayout;
@@ -18,31 +19,43 @@ public class FrmPregUsu extends javax.swing.JDialog {
 
     /**
      * Creates new form FrmPregUsu1
+     *
      * @param parent - sirve para mantener la ventana padre bloqueada
-     * @param modal - para la herencia de frame si es true bloquea las demas ventanas
-     * @param index - sirve para transformar acciones como modificar y crear en un mismo boton por ejemplo
+     * @param modal - para la herencia de frame si es true bloquea las demas
+     * ventanas
+     * @param index - sirve para transformar acciones como modificar y crear en
+     * un mismo boton por ejemplo
      * @param padre - para llamar los metodos de otro frame del que este depende
      */
-    public FrmPregUsu(java.awt.Frame parent, boolean modal,int index,JPanel padre) {
+    public FrmPregUsu(java.awt.Frame parent, boolean modal, int index, JPanel padre) {
         super(parent, modal);
         initComponents();
         pnlContenedor.setLayout(new BorderLayout(5, 5));
         if (index == 0) {
-            pnlContenedor.add(new pnlRegistro(true, this,padre));
-        }else {
-            pnlContenedor.add(new pnlPregun(this,padre));
+            pnlContenedor.add(new pnlRegistro(true, this, padre));
+        } else {
+            pnlContenedor.add(new pnlPregun(this, padre));
         }
         pnlContenedor.updateUI();
     }
-    public FrmPregUsu(Usuario usuario,java.awt.Frame parent, boolean modal,int index,JPanel padre)throws NullPointerException{
+
+    public FrmPregUsu(Usuario usuario, java.awt.Frame parent, boolean modal, int index, JPanel padre) throws NullPointerException {
         super(parent, modal);
         initComponents();
         pnlContenedor.setLayout(new BorderLayout(5, 5));
         if (index == 0) {
-            pnlContenedor.add(new pnlRegistro(usuario,true, this,padre));
-        }else{
-            pnlContenedor.add(new pnlPregun(this,padre));
+            pnlContenedor.add(new pnlRegistro(usuario, true, this, padre));
+        } else {
+            pnlContenedor.add(new pnlPregun(this, padre));
         }
+        pnlContenedor.updateUI();
+    }
+
+    public FrmPregUsu(Pregunta pregunta,String idPreg, java.awt.Frame parent, boolean modal, JPanel padre) throws NullPointerException {
+        super(parent, modal);
+        initComponents();
+        pnlContenedor.setLayout(new BorderLayout(5, 5));
+        pnlContenedor.add(new pnlPregun(pregunta,idPreg, this, padre));
         pnlContenedor.updateUI();
     }
 

@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
@@ -32,6 +33,7 @@ public class pnlIniciarSesion extends javax.swing.JPanel {
     CtlJuego juego = new CtlJuego();
     public static ArrayList<String> listaCedulas = new ArrayList<String>();
     private JFrame padre;
+    private CtlJuego controladorJuego;
 
     public pnlIniciarSesion() {
         initComponents();
@@ -47,6 +49,7 @@ public class pnlIniciarSesion extends javax.swing.JPanel {
 
     public pnlIniciarSesion(String idJuego, int participantes) {
         initComponents();
+        controladorJuego = new CtlJuego();
         lblAstContraseña.setVisible(false);
         lblAstNombreUsu.setVisible(false);
         notaVisible(false);
@@ -61,6 +64,7 @@ public class pnlIniciarSesion extends javax.swing.JPanel {
 
     public pnlIniciarSesion(String idJuego, int participantes, JFrame padre) {
         initComponents();
+        controladorJuego = new CtlJuego();
         lblAstContraseña.setVisible(false);
         lblAstNombreUsu.setVisible(false);
         notaVisible(false);
@@ -348,26 +352,28 @@ public class pnlIniciarSesion extends javax.swing.JPanel {
                         FrmUsuario frmusu = new FrmUsuario(txtNombreUsu.getText() + "".trim());
                         momentoIniciar(frmusu);
                     } else {
+                        String cedulaJugador = usu.traerDato(txtNombreUsu.getText().trim() + "", "cedula");
+                        if (controladorJuego.validarJugador(cedulaJugador,idJuego)) {
+                            listaCedulas.add(cedulaJugador);
 
-                        listaCedulas.add(usu.traerDato(txtNombreUsu.getText().trim() + "", "cedula"));
-
-                        FrmJuego jogo;
-                        if (padre != null) {
-                            jogo = new FrmJuego(idJuego, Integer.parseInt(usu.traerDato(txtNombreUsu.getText().trim() + "", "cedula")), participantes,padre);
+                            FrmJuego jogo;
+                            if (padre != null) {
+                                jogo = new FrmJuego(idJuego, Integer.parseInt(usu.traerDato(txtNombreUsu.getText().trim() + "", "cedula")), participantes, padre);
+                            } else {
+                                jogo = new FrmJuego(idJuego, Integer.parseInt(usu.traerDato(txtNombreUsu.getText().trim() + "", "cedula")), participantes);
+                            }
+                            momentoIniciar(jogo);
                         }else{
-                            jogo = new FrmJuego(idJuego, Integer.parseInt(usu.traerDato(txtNombreUsu.getText().trim() + "", "cedula")), participantes);
+                            JOptionPane.showMessageDialog(null, "Lo sentimos, no puede volver a jugar este juego");
                         }
-                        momentoIniciar(jogo);
                     }
                 } else {
                     prevenirContrasena();
-
                 }
 
             } else {
                 cambiarNota("La informacion que ha diligenciado", "no es correcta o no existe");
                 notaVisible(true);
-
             }
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
@@ -478,9 +484,9 @@ public class pnlIniciarSesion extends javax.swing.JPanel {
         frame.setLocationRelativeTo(null);
         if (Main.ventanaPrincipal.isVisible()) {
             recordar(chbRecordarme.isSelected());
-            Main.ventanaPrincipal.dispose();
+            Main.ventanaPrincipal.setVisible(false);
         } else {
-            FrmCrearJuego.ventanaJuego.dispose();
+            FrmCrearJuego.ventanaJuego.setVisible(false);
         }
     }
 
