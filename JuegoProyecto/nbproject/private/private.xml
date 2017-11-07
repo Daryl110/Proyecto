@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Daryl%20Ospina/Documents/NetBeansProjects/ProyectoFinal/JuegoProyecto/src/Vista/FrmAdministrador.java</file>
-            <file>file:/C:/Users/Daryl%20Ospina/Documents/NetBeansProjects/ProyectoFinal/JuegoProyecto/src/Controlador/Main.java</file>
-            <file>file:/C:/Users/Daryl%20Ospina/Documents/NetBeansProjects/ProyectoFinal/JuegoProyecto/src/Vista/FrmPrincipal.java</file>
+            <file>file:/C:/Users/Nicolas%20Davila/Documents/GitHub/Proyecto/JuegoProyecto/src/Controlador/CtlJuego.java</file>
+            <file>file:/C:/Users/Nicolas%20Davila/Documents/GitHub/Proyecto/JuegoProyecto/src/Vista/Admin/pnlEstadisticas.java</file>
+            <file>file:/C:/Users/Nicolas%20Davila/Documents/GitHub/Proyecto/JuegoProyecto/src/Vista/Login/pnlIniciarSesion.java</file>
+            <file>file:/C:/Users/Nicolas%20Davila/Documents/GitHub/Proyecto/JuegoProyecto/src/Vista/Login/pnlRegistro.java</file>
+            <file>file:/C:/Users/Nicolas%20Davila/Documents/GitHub/Proyecto/JuegoProyecto/src/Vista/FrmCrearJuego.java</file>
+            <file>file:/C:/Users/Nicolas%20Davila/Documents/GitHub/Proyecto/JuegoProyecto/src/Vista/FrmAdministrador.java</file>
+            <file>file:/C:/Users/Nicolas%20Davila/Documents/GitHub/Proyecto/JuegoProyecto/src/Controlador/CtlUsuario.java</file>
+            <file>file:/C:/Users/Nicolas%20Davila/Documents/GitHub/Proyecto/JuegoProyecto/src/Vista/Admin/pnlPregUsus.java</file>
         </group>
     </open-files>
 </project-private>

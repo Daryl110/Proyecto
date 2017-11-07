@@ -64,13 +64,13 @@ public class CtlUsuario {
         return dao.traerDato("usuario", columna, "nombreUsu", nombreUsu);
     }
 
-    public boolean solicitudRegistro(int cedula, int pregunta, int semestre, String nombre, String nombreUsu, String contrasena, String correo, String telefono, String respuesta) {
+    public boolean solicitudRegistro(String cedula, int pregunta, int semestre, String nombre, String nombreUsu, String contrasena, String correo, String telefono, String respuesta) {
 
         if (dao.validarCampo(nombreUsu, "nombreUsu", "usuario")) {
             return false;
         }
 
-        Usuario usu = new Usuario(cedula, pregunta, semestre, nombre, nombreUsu, contrasena, correo, telefono, respuesta);
+        Usuario usu = new Usuario(Integer.parseInt(cedula), pregunta, semestre, nombre, nombreUsu, contrasena, correo, telefono, respuesta);
 
         return controladorDAO.solicitudRegistro(usu, "usuario");
     }

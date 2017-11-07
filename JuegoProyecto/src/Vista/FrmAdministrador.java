@@ -197,10 +197,6 @@ public class FrmAdministrador extends javax.swing.JFrame {
     private void btnPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreguntasActionPerformed
         try {
             // TODO add your handling code here:
-<<<<<<< HEAD
-
-=======
->>>>>>> fd7774a34e87b1050842ab2b7d95a8bb82c2dcbd
             visualizar("preguntas", 1);
         } catch (SQLException ex) {
             Logger.getLogger(FrmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
