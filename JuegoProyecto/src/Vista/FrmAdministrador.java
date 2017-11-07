@@ -10,6 +10,9 @@ import Vista.Admin.pnlEstadisticas;
 import Vista.Admin.pnlPregUsus;
 import Vista.Login.pnlRegistro;
 import java.awt.BorderLayout;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -17,8 +20,6 @@ import javax.swing.JPanel;
  * @author Daryl Ospina
  */
 public class FrmAdministrador extends javax.swing.JFrame {
-
-    
 
     public FrmAdministrador() {
         initComponents();
@@ -181,23 +182,40 @@ public class FrmAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticasActionPerformed
-        // TODO add your handling code here:
-        visualizar("estadisticas", 0);
+        try {
+            // TODO add your handling code here:
+            visualizar("estadisticas", 0);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEstadisticasActionPerformed
 
     private void btnPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreguntasActionPerformed
-        // TODO add your handling code here:
-        visualizar("preguntas", 1);
+        try {
+            // TODO add your handling code here:
+
+            visualizar("preguntas", 1);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPreguntasActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        // TODO add your handling code here:
-        visualizar("preguntas", 0);
+        try {
+            // TODO add your handling code here:
+            visualizar("preguntas", 0);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnUsuarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarios1ActionPerformed
-        // TODO add your handling code here:
-        visualizar("temas", 2);
+        try {
+            // TODO add your handling code here:
+            visualizar("temas", 2);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUsuarios1ActionPerformed
 
     public static void main(String[] args) {
@@ -207,7 +225,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
     }
 
     //Metodo Para Visualizar Paneles
-    public void visualizar(String panel, int index) {
+    public void visualizar(String panel, int index) throws SQLException {
         try {
             pnlContenedor.removeAll();
             pnlContenedor.setLayout(new BorderLayout(5, 5));

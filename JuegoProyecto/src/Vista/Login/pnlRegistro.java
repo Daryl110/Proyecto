@@ -765,5 +765,15 @@ public class pnlRegistro extends javax.swing.JPanel {
         }
         return !true;
     }
+    
+    public void cambiarCampos(String cedula,String nombreUsu,String nombre,String contrasena,String email,String telefono,int semestre){
+        txtCedula.setText(cedula);
+        txtNombreUsu.setText(nombreUsu);
+        txtNombre.setText(nombre);
+        txtContrasena.setText(contrasena);
+        txtCorreo.setText(email);
+        txtTelefono.setText(telefono);
+        spnSemestre.setValue(semestre);
+    }
 
 }

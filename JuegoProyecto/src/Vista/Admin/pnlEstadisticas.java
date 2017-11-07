@@ -6,6 +6,8 @@
 package Vista.Admin;
 
 import Controlador.CtlJuego;
+import Controlador.CtlUsuario;
+import Modelo.Usuario;
 import Vista.Login.pnlRegistro;
 import java.awt.BorderLayout;
 import java.sql.SQLException;
@@ -16,22 +18,24 @@ import javax.swing.JPanel;
  * @author Daryl Ospina
  */
 public class pnlEstadisticas extends javax.swing.JPanel {
-    
-    
+
     CtlJuego contrJuego = new CtlJuego();
+    CtlUsuario controUsu=new CtlUsuario();
+    pnlRegistro panelReserva= new pnlRegistro(false);
 
     /**
      * Creates new form pnlEstadisticas
      *
      * @param panelR
      */
-    public pnlEstadisticas(JPanel panelR) throws SQLException {
+    public pnlEstadisticas(pnlRegistro panelR) throws SQLException {
         initComponents();
+        panelReserva=panelR;
         jPanel3.removeAll();
-        jPanel3.setLayout(new BorderLayout(5,5));
-        jPanel3.add(panelR);
+        jPanel3.setLayout(new BorderLayout(5, 5));
+        jPanel3.add(panelReserva);
         jPanel3.updateUI();
-        
+
         tblEstadistica.setModel(contrJuego.listaEstadistica());
     }
 
@@ -119,6 +123,11 @@ public class pnlEstadisticas extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblEstadistica.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEstadisticaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblEstadistica);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 490, 330));
@@ -134,6 +143,13 @@ public class pnlEstadisticas extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblEstadisticaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEstadisticaMouseClicked
+
+        Usuario usu = controUsu.traerUsuario(tblEstadistica.getValueAt(tblEstadistica.getSelectedRow(), 0) + "");
+        panelReserva.cambiarCampos(usu.getCedula()+"", usu.getNombreUsu(), usu.getNombre(), usu.getContrasena(), usu.getCorreo(), usu.getTelefono(), usu.getSemestre());
+        
+    }//GEN-LAST:event_tblEstadisticaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -22,7 +22,6 @@ public class CtlJuego {
 
     private final DAO dao;
     private final CtlDAO controladorDAO;
-    ArrayList<Puntuacion> listaPuntuacio = new ArrayList<>();
     Puntuacion punta = new Puntuacion();
 
     public CtlJuego() {
@@ -127,6 +126,8 @@ public class CtlJuego {
 
         DefaultTableModel model = new DefaultTableModel(new Object[][]{}, nombreColumnas);
 
+        Puntuacion[] lista = new Puntuacion[pnlIniciarSesion.listaCedulas.size()];
+
         for (int i = 0; i < pnlIniciarSesion.listaCedulas.size(); i++) {
             ResultSet resultado = dao.traerBuscarAvanzado("resultado", "idJuego", dao.traerDato("juego", "idJuego", "nombreJuego", nombreJuego), "cedula", pnlIniciarSesion.listaCedulas.get(i));
             int suma = 0;
@@ -137,11 +138,29 @@ public class CtlJuego {
             } catch (SQLException e) {
             }
             punta = new Puntuacion(pnlIniciarSesion.listaCedulas.get(i), suma, dao.traerDato("usuario", "nombreUsu", "cedula", pnlIniciarSesion.listaCedulas.get(i) + ""));
-            listaPuntuacio.add(punta);
+            lista[i] = punta;
         }
 
-        for (int x = 0; x < listaPuntuacio.size(); x++) {
-            model.addRow(new Object[]{listaPuntuacio.get(x).getCedula(), listaPuntuacio.get(x).getNombreUsuario(), listaPuntuacio.get(x).getPuntuacion()});
+        for (int i = 0; i < lista.length - 1; i++) {
+            int max = i;
+
+            for (int j = i + 1; j < lista.length - 1; j++) {
+                if (lista[j].getPuntuacion() > lista[max].getPuntuacion()) {
+                    max = j;
+                }
+            }
+
+            if (i != max) {
+                Puntuacion aux = lista[i];
+                lista[i] = lista[max];
+                lista[max] = aux;
+            }
+        }
+
+        for (int x = 0;
+                x < lista.length-1;
+                x++) {
+            model.addRow(new Object[]{lista[x].getCedula(), lista[x].getNombreUsuario(), lista[x].getPuntuacion()});
         }
         pnlIniciarSesion.listaCedulas = new ArrayList<>();
         return model;
@@ -151,34 +170,51 @@ public class CtlJuego {
     public DefaultTableModel listaEstadistica() throws SQLException {
         String[] nombreColumnas = {"Nombre Usuario", "Puntaje", "Nombre de juego"};
         DefaultTableModel model = new DefaultTableModel(new Object[][]{}, nombreColumnas);
-
+        int contador = 0;
+        Puntuacion[] lista = new Puntuacion[controladorDAO.getNumeroRegistros("resultado") / 10];
         try {
-            ArrayList<Puntuacion> lista = new ArrayList<>();
             ResultSet resultado = dao.traerListar("resultado");
-            int cedula = resultado.getInt("cedula");
-            int idJuego = resultado.getInt("idJuego");
-            int suma = resultado.getInt("puntaje");
+            if (resultado.next()) {
+                int cedula = resultado.getInt("cedula");
+                int idJuego = resultado.getInt("idJuego");
+                int suma = resultado.getInt("puntaje");
+                while (resultado.next()) {
+                    if (idJuego == resultado.getInt("idJuego") && cedula == resultado.getInt("cedula")) {
+                        suma = suma + resultado.getInt("puntaje");
+                    } else {
+                        punta = new Puntuacion(cedula + "", suma, idJuego + "");
+                        lista[contador] = punta;
+                        cedula = resultado.getInt("cedula");
+                        idJuego = resultado.getInt("idJuego");
+                        suma = resultado.getInt("puntaje");
+                        contador++;
+                    }
+                }
 
-            while (resultado.next()) {
-                if (idJuego == resultado.getInt("idJuego") && idJuego == resultado.getInt("idJuego")) {
-                    idJuego = resultado.getInt("idJuego");
-                    cedula = resultado.getInt("cedula");
-                    suma = suma + resultado.getInt("puntaje");
-                } else {
-                    punta = new Puntuacion(cedula + "", suma, idJuego + "");
-                    lista.add(punta);
-                    idJuego = resultado.getInt("idJuego");
-                    cedula = resultado.getInt("cedula");
+                for (int i = 0; i < lista.length - 1; i++) {
+                    int max = i;
+
+                    for (int j = i + 1; j < lista.length - 1; j++) {
+                        if (lista[j].getPuntuacion() > lista[max].getPuntuacion()) {
+                            max = j;
+                        }
+                    }
+
+                    if (i != max) {
+                        Puntuacion aux = lista[i];
+                        lista[i] = lista[max];
+                        lista[max] = aux;
+                    }
                 }
             }
 
-            for (int i = 0; i < 10; i++) {
-                model.addRow(new Object[]{lista.get(i).getCedula(),
-                    lista.get(i).getPuntuacion(),
-                    lista.get(i).getNombreUsuario()});
+            for (int i = 0; i < lista.length - 1; i++) {
+                model.addRow(new Object[]{dao.traerDato("usuario", "nombreUsu", "cedula", lista[i].getCedula()),
+                    lista[i].getPuntuacion(), dao.traerDato("juego", "nombreJuego", "idJuego", lista[i].getNombreUsuario())
+                });
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
 
